@@ -66,20 +66,20 @@ next();
 });
 
 //precheck request
-app.use(function(req, res, next) {
+// app.use(function(req, res, next) {
  
- if (req.get("content-type") !== "application/json") {
-  return res
-    .status(415)
-    .send(
-      "Wrong Content Type:" +
-        req.get("content-type") +
-        "Please use /'application/json/'"
-    );
-}
+//  if (req.get("content-type") !== "application/json") {
+//   return res
+//     .status(415)
+//     .send(
+//       "Wrong Content Type:" +
+//         req.get("content-type") +
+//         "Please use /'application/json/'"
+//     );
+// }
 
-next();
-});    
+// next();
+// });    
 
 
 
