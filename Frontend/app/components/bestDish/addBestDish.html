@@ -1,0 +1,110 @@
+
+    <p>{{checkResponce}}</p>
+
+    <div>
+            <div class="row">
+                    <div class="input-field col s6">
+                        <button class="btn waves-effect waves-light" type="submit" ng-click="showCreateDishBtn()">Create Dish</button>
+                    </div>
+                
+            <div class="input-field col s6">
+                <button class="btn waves-effect waves-light" type="submit" ng-click="showCheckDishBtn()">Edit Dish</button>
+            </div>
+        </div>
+        
+    </div>
+
+
+    <div ng-show="showCheckDish">
+        <div class="row">
+            <div class="input-field col s6 offset-s3">
+                <input id="mobid" type="text" ng-model="DishId">
+                <label class="active" for="mobid">Enter Dish Name</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s8 offset-s2">
+                <button class="btn waves-effect waves-light" type="submit" ng-click="checkDish()">Check</button>
+            </div>
+        </div>
+    </div>
+
+    
+
+
+        <div ng-show="showCreateDish">
+            <div class="row">
+                <div class="input-field col s6 offset-s3">
+                    <input id="name" type="text" ng-model="Name">
+                    <label  for="name">Name</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s6 offset-s3">
+                    <input id="type" type="text" ng-model="Type">
+                    <label  for="type">Type</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s6 offset-s3">
+                    <input id="isnew" type="text" ng-model="IsNew">
+                    <label  for="isnew">IsNew</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s6 offset-s3">
+                    <input id="sort" type="text" ng-model="Sort">
+                    <label  for="sort">Sort</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s8 offset-s2">
+                    <button class="btn waves-effect waves-light" type="submit" ng-click="createDish()">Submit</button>
+                </div>
+            </div>
+        </div>
+    
+
+
+
+
+
+
+    <div ng-show="showAddDishForm">
+        <div class="row">
+            <div class="input-field col s8 offset-s2">
+                <input id="flavour" type="text" ng-model="Flavour">
+                <label class="active" for="flavour">Flavour</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s8 offset-s2 ">
+                <input id="description" type="text" ng-model="Description" class="validate">
+                <label class="active" for="description">Description</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s8 offset-s2">
+                <input id="location" type="text" ng-model="Location" class="validate">
+                <label class="active" for="location">Location</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s8 offset-s2">
+                <input id="price" type="text" ng-model="Price" class="validate">
+                <label class="active" for="price">Price</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s8 offset-s2">
+                <input id="address" type="text" ng-model="Address" class="validate">
+                <label class="active" for="address">Address</label>
+            </div>
+        </div>
+        <p>{{addResResponce}}</p>
+        <div class="row">
+            <div class="input-field col s8 offset-s2">
+                <button class="btn waves-effect waves-light" type="submit" ng-click="addDish()">Submit </button>
+            </div>
+        </div>
+    

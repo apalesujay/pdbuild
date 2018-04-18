@@ -1,0 +1,40 @@
+
+    <!-- Toolbar -->
+    <div id="toolbar" class="primary-color z-depth-1">
+      <div ng-click="runsidebar()" class="open-left" id="open-left" data-activates="slide-out-left">
+        <i class="ion-android-menu"></i>
+      </div>
+      <h1 class="title">NewDish</h1>
+      
+      <div ng-click="runright()" class="open-right" id="open-right"  data-activates="slide-out">
+        <i class="ion-pricetags"></i>
+      </div>
+    </div>
+    <!-- End of Toolbar -->
+
+
+
+    
+
+
+    <div class="news">
+            <div ng-repeat="rest in restaurants">
+        <div class="media-top-object animated fadeinright z-depth-1 delay-2" style="padding:5px 5px;" ng-click="showRestaurant(rest)">
+          <div  class="media-left" style="width:auto;"><img style="width:150px;height:100px;" ng-src="{{rest.Snapshots[0].ImageURL}}" alt=""></div>
+          <div class="media-body" style="padding-bottom: 8px;padding-top: 8px;">
+            <h4 class="news-title" style="margin:0px">
+              <div>{{rest.Name}}</div>
+            </h4>
+            <p class="small" >{{rest.Locality +"  "+rest.City}}</p>
+            <p class="small" style="color:#f39c12">{{rest.Cuisines}}</p>
+            <p class="small" ng-hide="rest.DealDescription==null"><span class="deals">get 20% of on food items and other foods</span></p>
+            
+          </div>
+        </div>  
+        </div>
+    </div>
+
+  
+
+  
+

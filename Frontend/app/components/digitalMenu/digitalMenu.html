@@ -1,0 +1,38 @@
+<!-- Toolbar -->
+<div id="toolbar" class="primary-color z-depth-1">
+    <div class="open-left" ng-click="returnLink()">
+        <i class="ion-arrow-left-c"></i>
+    </div>
+    <h1 class="title">NewDish</h1>
+
+    <div class="open-right" style="visibility:hidden">
+        <i class="ion-android-person"></i>
+    </div>
+</div>
+<!-- End of Toolbar -->
+
+
+<div class="animated fadeinup delay-1">
+    <div ng-repeat="x in Dishes">
+        <h5 style="padding:10px 20px;margin:0px;background-color: #eee;color:#999">{{x.MenuDivision | uppercase}}</h5>
+        <div class="news">
+            <div ng-repeat="m in x.details" class="media-top-object" style="padding:5px 20px;margin:0rem;" ng-click="">
+                <div class="media-body" style="display:flex;justify-content:space-between;padding-left:0px;">
+                    <h4 class="news-title" style="margin:0px;;line-height:40px">
+                        {{m.Name}}  
+                    </h4>
+                    <div class="card-share">
+                        <i class="ion-ios-arrow-forward" id="photos"></i>
+                        <span></span>
+        
+                    </div>
+                </div>
+            </div>
+            </div>
+    </div>
+
+
+  
+
+
+</div>

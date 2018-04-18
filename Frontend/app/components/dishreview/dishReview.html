@@ -1,0 +1,46 @@
+<!-- Toolbar -->
+<div id="toolbar" class="primary-color z-depth-1">
+    <div class="open-left" ng-click="returnLink()">
+        <i class="ion-arrow-left-c"></i>
+    </div>
+    <h1 class="title">NewDish</h1>
+
+    <div class="open-right" style="visibility:hidden">
+        <i class="ion-android-person"></i>
+    </div>
+</div>
+<!-- End of Toolbar -->
+
+
+
+
+
+
+
+<div class="p-20 animated fadeinup delay-1">
+
+    <div class="login-form z-depth-1">
+        <div id="ratingBox" class="additional"></div>
+       <br>
+       <textarea name="comment" ng-model="commentValue"  id="commentBox" placeholder="describe your experience that you had with the dish.what is the unique about it that make it diffenent from others." cols="30" rows="3" style="min-height:100px;border:0px;resize: none;"></textarea>
+<br>
+
+    <!-- <div>  
+          <input type="checkbox" id="bestinCity" class="filled-in" checked="checked" />
+          <label for="bestinCity">Best in City</label>
+          &nbsp;&nbsp;&nbsp;
+          <input type="checkbox" id="bestinLocal" class="filled-in" checked="checked" />
+          <label for="bestinLocal">Best in Local</label>
+    </div> -->
+    <br>
+     
+
+
+
+        <div style="text-align:center;">
+            <button class="small waves-effect waves-light btn red " ng-click="setRating()">Submit</button>
+        </div>
+        <input id="ratinghidden" name="rate" type="hidden" />
+        <br>
+    </div>
+</div>

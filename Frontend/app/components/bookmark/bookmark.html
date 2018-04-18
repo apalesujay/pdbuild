@@ -1,0 +1,42 @@
+<div id="toolbar" class="primary-color z-depth-1">
+  <div class="open-left" ng-click="returnLink()">
+    <i class="ion-arrow-left-c"></i>
+  </div>
+  <h1 class="title">NewDish</h1>
+
+  <div class="open-right" style="visibility:hidden">
+    <i class="ion-android-person"></i>
+  </div>
+</div>
+<!-- End of Toolbar -->
+
+
+<div>
+
+
+  <div class="news">
+    <div ng-repeat="rest in restaurants">
+      <div class="media-top-object animated fadeinright z-depth-1 delay-2" style="padding:5px 5px;" ng-click="showRestaurant(rest)">
+        <div class="media-left" style="width:auto;">
+          <img style="width:150px;height:100px;" ng-src="{{rest.Snapshots[0].ImageURL}}" alt="">
+        </div>
+        <div class="media-body" style="padding-bottom: 8px;padding-top: 8px;">
+          <h4 class="news-title" style="margin:0px">
+            <div>{{rest.Name}}</div>
+          </h4>
+          <p class="small">Bellendur Banglore</p>
+          <p class="small" style="color:#f39c12">{{rest.Cuisines}}</p>
+          <p class="small">
+            <span class="deals">save {{rest.Deals}} on {{rest.DealsOn}}</span>
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="messagescreen white fadein" ng-hide="hideBookmarkMsg">
+    <div class="messagediv">
+      <h4 style="color:#757575">You don't have any Bookmarks.</h4>
+    </div>
+  </div>

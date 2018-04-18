@@ -1,0 +1,136 @@
+<div id="toolbar" class="primary-color z-depth-1">
+        <div class="open-left" ng-click="returnLink()">
+                <i class="ion-arrow-left-c"></i>
+        </div>
+        <h1 class="title">NewDish</h1>
+
+        <div class="open-right" style="visibility:hidden">
+                <i class="ion-android-person"></i>
+        </div>
+</div>
+<!-- End of Toolbar -->
+
+
+<div>
+
+
+        <!-- Project Image -->
+        <div class="z-depth-1 animated fadein" style="position:relative">
+                <img ng-src="{{restDetails.Snapshots[0].ImageURL}}" alt="">
+                <h2 style="position: absolute;color:white;z-index: 2;bottom: 0px;padding-left: 20px;font-size: 25px;">{{restDetails.Name}}</h2>
+                <p style="position: absolute;color:white;z-index: 2;bottom: -25px;padding-left: 21px;font-size: 15px;" class="ng-binding">{{restDetails.Location}}</p>
+                <h2 style="position: absolute;color:white;z-index: 2;bottom: 0px;right:0px;padding-right: 20px;font-size: 25px;">{{restDetails.Deals}}</h2>
+        </div>
+
+        <!-- Project Author -->
+        <div class="p-20 animated fadeinup delay-1">
+
+                <div class="card-feedback">
+                        <div class="card-share">
+                                <i class="ion-ios-telephone" id="telephone" style="color:#2ecc71" ng-click="openDial(restDetails.Mobile)"></i>
+                                <span></span>
+
+                        </div>
+                        <div class="card-share">
+                                <i class="ion-location" id="location" style="color:#3498db" ng-click="openMaps(restDetails.Latitude,restDetails.Longitude)"></i>
+                                <span></span>
+
+                        </div>
+                        <div class="card-share">
+                                <i class="ion-bookmark" id="bookmark" style="color:#e74c3c" ng-click="addToBookmark();"></i>
+                                <span></span>
+
+                        </div>
+                </div>
+                <div class="p-20 row" style="margin-bottom:0px;padding-bottom:0px !important;">
+                        <div class="col s6">
+                                <span class="customsmall">TYPE</span>
+                                <ul class="customsmallcontent">
+                                        <li ng-repeat="x in restDetails.Establishment">{{x}}</li>
+                                </ul>
+                                <span class="customsmall">TIME</span>
+                                <ul class="customsmallcontent" style="margin-top:0px">
+                                        <li ng-repeat="x in restDetails.Time">{{x}}</li>
+
+                                </ul>
+                                <span class="customsmall">ADDRESS</span>
+                                <p class="customsmallcontent">{{restDetails.Address}}</p>
+                        </div>
+                        <div class="col s6">
+                                <span class="customsmall">AVERAGE COST</span>
+                                <p class="customsmallcontent">&#8377{{restDetails.AverageCost}}/-</p>
+                                <span class="customsmall">CUISINES</span>
+                                <ul class="customsmallcontent">
+                                        <li ng-repeat="x in restDetails.Cuisines">{{x}}</li>
+                                </ul>
+
+                        </div>
+
+                </div>
+        </div>
+
+        <div class="news">
+
+                <div class="media-top-object animated fadeinright z-depth-1 delay-2" style="padding:5px 20px;" ng-click="showMenu()">
+
+
+                        <div class="media-body" style="display:flex;justify-content:space-between;padding-left:0px">
+                                <h4 class="news-title" style="margin:0px;line-height:40px">
+                                        <i style="color:#e74c3c" class="ion-ios-paper-outline"></i> MENU
+                                </h4>
+                                <div class="card-share">
+                                        <i class="ion-ios-arrow-forward" id="menu"></i>
+                                        <span></span>
+
+                                </div>
+
+
+
+                        </div>
+                </div>
+
+                <div class="media-top-object animated fadeinright z-depth-1 delay-2" style="padding:5px 20px;" ng-click="showPhotos()">
+
+
+                        <div class="media-body" style="display:flex;justify-content:space-between;padding-left:0px;">
+                                <h4 class="news-title" style="margin:0px;;line-height:40px">
+                                        <i style="color:#e74c3c" class="ion-ios-photos-outline"></i> PHOTOS
+                                </h4>
+                                <div class="card-share">
+                                        <i class="ion-ios-arrow-forward" id="photos"></i>
+                                        <span></span>
+
+                                </div>
+
+
+
+                        </div>
+                </div>
+
+
+                <div class="media-top-object animated fadeinright z-depth-1 delay-2" style="padding:5px 20px;" ng-click="showDigitalMenu()">
+
+
+                        <div class="media-body" style="display:flex;justify-content:space-between;padding-left:0px;">
+                                <h4 class="news-title" style="margin:0px;;line-height:40px">
+                                        <i style="color:#e74c3c" class="ion-android-star-half"></i>  ADD REVIEW
+                                </h4>
+                                <div class="card-share">
+                                        <i class="ion-ios-arrow-forward" id="DigitalMenu"></i>
+                                        <span></span>
+
+                                </div>
+
+
+
+                        </div>
+                </div>
+
+
+                
+        </div>
+
+
+
+
+</div>

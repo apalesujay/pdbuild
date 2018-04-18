@@ -1,0 +1,111 @@
+<!-- not in use -->
+
+    <div style="margin-top:40px;">
+        <div class="row">
+            <div class="input-field col s6 offset-s3">
+                <input id="mobid" type="text" ng-model="MobId">
+                <label class="active" for="mobid">User Mobile</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s8 offset-s2">
+                <button class="btn waves-effect waves-light" type="submit" ng-click="checkUser()">Check </button>
+            </div>
+        </div>
+
+        <p>{{checkResponce}}<p>
+
+        <div class="row" ng-show="showCreateBtn">
+                <div class="input-field col s8 offset-s2">
+                    <button class="btn waves-effect waves-light" type="submit" ng-click="createBtn()">Create Restaurant</button>
+                </div>
+            </div>
+    </div>
+
+
+
+    <div ng-show="showResForm">
+        <div class="row">
+            <div class="input-field col s8 offset-s2">
+                <input id="name" type="text" ng-model="Name">
+                <label class="active" for="name">Name</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s8 offset-s2 ">
+                <input id="branch" type="text" ng-model="Branch" class="validate">
+                <label class="active" for="branch">Branch</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s8 offset-s2">
+                <input id="mobile" type="text" ng-model="Mobile" class="validate">
+                <label class="active" for="mobile">Mobile</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s8 offset-s2">
+                <input id="time" type="text" ng-model="Time" class="validate">
+                <label class="active" for="time">Time</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s8 offset-s2">
+                <input id="cuisines" type="text" ng-model="Cuisines" class="validate">
+                <label class="active" for="cuisines">Cuisines</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s8 offset-s2">
+                <input id="type" type="text" ng-model="Type" class="validate">
+                <label class="active" for="type">Type</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s8 offset-s2">
+                <input id="averageCost" type="text" ng-model="AverageCost" class="validate">
+                <label class="active" for="averageCost">AverageCost</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s8 offset-s2">
+                <input id="address" type="text" ng-model="Address" class="validate">
+                <label class="active" for="address">Address</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s8 offset-s2">
+                <input id="bestDishes" type="text" ng-model="BestDishes" class="validate">
+                <label class="active" for="bestDishes">BestDishes</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s8 offset-s2">
+                <input id="more" type="text" ng-model="More" class="validate">
+                <label class="active" for="more">More</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s8 offset-s2">
+                <input id="deals" type="text" ng-model="Deals" class="validate">
+                <label class="active" for="deals">Deals</label>
+            </div>
+        </div>
+        <p>{{addResResponce}}</p>
+        <div class="row">
+            <div class="input-field col s8 offset-s2">
+                <button class="btn waves-effect waves-light" type="submit" ng-click="addToRestaurant()">Submit </button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+

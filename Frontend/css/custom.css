@@ -1,0 +1,124 @@
+body
+{
+    -webkit-user-select: none; /* Safari 3.1+ */
+    -moz-user-select: none; /* Firefox 2+ */
+    -ms-user-select: none; /* IE 10+ */
+    user-select: none; /* Standard syntax */
+}
+
+
+
+
+.messagescreen {
+    height: 100%;
+    width: 100%;
+    z-index: 100;
+    text-align: center;
+    position: fixed;
+}
+
+.white {
+    background-color: white;
+}
+
+.successdiv {
+    width: 100px;
+    height: 100px;
+    margin: 30% auto 0px auto;
+}
+
+.messagediv {
+    display: block;
+    margin: 30% auto 0px auto;
+    text-align: center;
+    color: #757575;
+}
+
+.deals {
+    font-size: 80%;
+    color: #e74c3c;
+    font-weight: 500;
+    line-height: 1.2em;
+}
+
+.customsmall {
+    font-size: 70% !important;
+    font-weight: 300;
+}
+
+.customsmallcontent {
+    font-size: 85% !important;
+    font-weight: 400;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+}
+
+.spinner {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 50px;
+    height: 50px;
+    z-index: 1000
+}
+
+
+.topBox
+{
+   padding: 0.75rem !important;
+}
+.innerBox
+{
+    position: relative;
+}
+
+.imageBox
+{
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.overlayBox
+{
+    position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                height: 100%;
+                width: 100%;
+                opacity: 0;
+                transition: .5s ease;
+                background-color:black;
+                opacity: 0.3;
+}
+
+.overlaytextBox
+{
+    color: white;
+     font-size: 20px;
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     transform: translate(-50%, -50%);
+     -ms-transform: translate(-50%, -50%);
+     text-align: center;
+}
+
+
+
+ul#bestdishlist  li
+{
+display: inline-block;
+margin-right: 20px;
+}
+
+
+textarea:focus,textarea:active
+{
+    outline: none;
+}

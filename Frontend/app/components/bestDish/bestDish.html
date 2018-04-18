@@ -1,0 +1,37 @@
+
+    <!-- Toolbar -->
+    <div id="toolbar" class="primary-color z-depth-1">
+      <div class="open-left" ng-click="returnLink()" >
+        <i class="ion-arrow-left-c"></i>
+      </div>
+      <h1 class="title">NewDish</h1>
+      
+      <div class="open-right"  style="visibility:hidden" >
+        <i class="ion-android-person"></i>
+      </div>
+    </div>
+    <!-- End of Toolbar -->
+
+    <div class="news">
+        <div ng-repeat="obj in bestDishes">
+    <div class="media-top-object animated fadeinright z-depth-1 delay-2" ng-click="showBestDish(obj.GeneralName)">
+      <div  class="media-left"><img ng-src="{{obj.DishImgUrl}}" alt=""></div>
+      <div class="media-body">
+        <h4 class="news-title">
+          <div>{{obj.Name}}</div>
+        </h4>
+        <p class="small">{{obj.Type}}</p>
+        <div class="card-feedback">
+          <div class="card-users">
+             <i class="ion-spoon" style="color:#f39c12"></i><span>3 variant</span>
+            <i class="ion-knife" style="color:#2ecc71"></i><span>{{obj.IsVegan}}</span><!--#e74c3c"-->
+          </div>
+          <div class="card-share">
+            <!-- <i class="ion-android-share-alt"></i> <span>Share</span> -->
+          </div>
+        </div>
+      </div>
+    </div>  
+    </div>
+</div>
+

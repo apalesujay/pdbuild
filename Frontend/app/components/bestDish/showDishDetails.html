@@ -1,0 +1,170 @@
+
+<div id="toolbar" class="primary-color z-depth-1">
+    <div class="open-left" ng-click="returnLink()">
+      <i class="ion-arrow-left-c"></i>
+    </div>
+    <h1 class="title">NewDish</h1>
+    
+    <div class="open-right"  style="visibility:hidden" >
+      <i class="ion-android-person"></i>
+    </div>
+   
+  </div>
+ 
+
+
+  
+  
+
+    <div class="news" style="position:relative">
+            <div ng-repeat="DishDetail in bestDishDetails">
+        <div class="media-top-object animated fadeinright z-depth-1 delay-2" style="padding:2px 2px" ng-click="showSingleDish(DishDetail._id)">
+          <div style="float:left"><img style="width:150px;height:100px" ng-src="{{DishDetail.DishImgUrl}}" alt=""></div>
+          <div style="padding:5px 15px;">
+            <h4 class="news-title">
+              <div>{{DishDetail._RestaurantName}}</div>
+            </h4>
+            <p class="small" style="margin-bottom:0rem">{{DishDetail._City+","+DishDetail._Locality}}</p>
+            <p class="small" style="color:#f39c12;margin-bottom:0rem" >{{DishDetail.Name}}</p>
+            <ul id="bestdishlist" style="margin:0">
+            <li><p class="small" style="margin-bottom:0rem;"><span class="deals">&#8377;{{DishDetail.Price}}</span></p></li>
+            <li ng-show="DishDetail.Label=='veg'"><i style="font-size:11px;color:#4caf50" class="ion-record"></i></li>
+            <li ng-show="DishDetail.Label=='non-veg'"><i style="font-size:11px;color:#e73d1f" class="ion-record"></i></li>
+            <li ng-show="DishDetail.Label=='egg'"><i style="font-size:11px;color:#f1c40f" class="ion-record"></i></li>
+          </ul>
+          </div>
+          <div class="" ng-click="" style="position:absolute;right:0;top:0;padding:25px 20px;color:#de5757">
+            <i style="font-size:3rem;" class="ion-location"></i>
+          </div>
+        </div>  
+        </div>
+    </div>
+
+
+
+
+
+<!--///////////////////////////////////////////////////////////-->
+<!--html with dual tabs-->
+
+<!-- <div id="toolbar" class="with-tab primary-color z-depth-1">
+    <div class="open-left" id="open-left" data-activates="slide-out-left">
+      <i class="ion-android-menu"></i>
+    </div>
+    <h1 class="title">Shuttle</h1>
+    <div class="open-right" id="open-right" data-activates="slide-out">
+      <i class="ion-android-person"></i>
+    </div>
+    
+   
+    <ul class="tabs">
+      <li class="tab col s6"><a class="active" href="#product1" target="_self">Local</a></li>
+      <li class="tab col s6"><a href="#product2" target="_self">City</a></li>
+    </ul>
+  </div>
+
+
+
+  <div class="page with-tab animated fadeinup">
+
+      <div id="product1">
+        <div class="product half">
+             
+          <div class="swiper-container swiper-slider">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <a href="product.html"><img src="img/product3.jpg" alt=""></a>
+              </div>
+              <div class="swiper-slide">
+                <a href="product.html"><img src="img/product.jpg" alt=""></a>
+              </div>
+            </div>
+           
+            <div class="swiper-pagination"></div>
+          </div>
+         
+          <div class="product-info">
+            <span class="small grey-text">Technology</span>
+            <h5 class="m-0"><strong>Wood Lamp</strong></h5>
+            <p class="m-0">$ 199.99</p>
+           
+            <div class="rating">
+              <i class="ion-star active"></i>
+              <i class="ion-star active"></i>
+              <i class="ion-star active"></i>
+              <i class="ion-star active"></i>
+              <i class="ion-star active"></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="product half">
+          <a href="product.html"><img src="img/product2.jpg" alt=""></a>
+          <div class="product-info">
+            <span class="small grey-text">Technology</span>
+            <h5 class="m-0"><strong>Some Cups</strong></h5>
+            <p class="m-0">$ 199.99</p>
+          
+            <div class="rating">
+              <i class="ion-star active"></i>
+              <i class="ion-star active"></i>
+              <i class="ion-star active"></i>
+              <i class="ion-star"></i>
+              <i class="ion-star"></i>
+            </div>
+          </div>
+        </div>
+        </div>
+
+        <div id="product2">
+            <div class="product half">
+                 
+              <div class="swiper-container swiper-slider">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide">
+                    <a href="product.html"><img src="img/product3.jpg" alt=""></a>
+                  </div>
+                  <div class="swiper-slide">
+                    <a href="product.html"><img src="img/product.jpg" alt=""></a>
+                  </div>
+                </div>
+                
+                <div class="swiper-pagination"></div>
+              </div>
+              
+              <div class="product-info">
+                <span class="small grey-text">Technology</span>
+                <h5 class="m-0"><strong>Wood Lamp</strong></h5>
+                <p class="m-0">$ 199.99</p>
+                
+                <div class="rating">
+                  <i class="ion-star active"></i>
+                  <i class="ion-star active"></i>
+                  <i class="ion-star active"></i>
+                  <i class="ion-star active"></i>
+                  <i class="ion-star active"></i>
+                </div>
+              </div>
+            </div>
+    
+            <div class="product half">
+              <a href="product.html"><img src="img/product2.jpg" alt=""></a>
+              <div class="product-info">
+                <span class="small grey-text">Technology</span>
+                <h5 class="m-0"><strong>Some Cups</strong></h5>
+                <p class="m-0">$ 199.99</p>
+                
+                <div class="rating">
+                  <i class="ion-star active"></i>
+                  <i class="ion-star active"></i>
+                  <i class="ion-star active"></i>
+                  <i class="ion-star"></i>
+                  <i class="ion-star"></i>
+                </div>
+              </div>
+            </div>
+            </div>
+
+
+
+        </div> -->
