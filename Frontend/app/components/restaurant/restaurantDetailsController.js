@@ -5,10 +5,9 @@ app.controller('restaurantDetailsCtrl', function ($scope, $route, $rootScope, $w
     x.then(success, err);
 
     function success(result) {
-      console.log(result.data.data);
-      $scope.restDetails = result.data.data;
+      $scope.restDetails = result.data;
       $rootScope.restData=$scope.restDetails;
-      console.log($rootScope.restData.Snapshots);
+      
     }
 
     function err(result) {
