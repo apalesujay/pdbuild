@@ -4,6 +4,7 @@ const Dish = require("../../app/models/dish");
 const Error = require("../../app/services/errorService");
 const _ = require("lodash");
 
+
 // add by admin updated
 exports.addRestaurant = async function(req, res) {
   //init
@@ -54,7 +55,7 @@ exports.getRestaurants = async function(req, res) {
 };
 
 //for single restaurant
-exports.getRestaurant = async function(req, res) {
+exports.getRestaurant = async function(req,res) {
   //init
   let restaurant;
 
@@ -75,6 +76,30 @@ exports.getRestaurant = async function(req, res) {
     return Error.handle(req, res, err, "err1");
   }
 };
+
+
+
+
+exports.test =async function(req,res,next)
+{
+  
+ 
+  
+try {
+  
+try{
+  awai
+}catch(ex)
+{
+throw ex;
+}
+
+} catch (error) {
+  next(error);
+}
+
+ 
+}
 
 exports.getDishesinRestaurant = async function(req, res) {
   // note:-api need refactoring [request for dishid can be removed]

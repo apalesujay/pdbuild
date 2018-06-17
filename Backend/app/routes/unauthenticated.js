@@ -8,9 +8,12 @@ apiRoutes.get('/', function(req, res) {
     res.json({ message: 'Welcome to the coolest API on earth!' });
   });
 
-var appManagement=require('../controllers/appManagementController');
+var appManagement = require('../controllers/appManagementController');
 apiRoutes.post('/checkAppUpgradation',appManagement.checkAppUpgradation);
 
+
+var restaurant=require("../controllers/RestaurantController");
+apiRoutes.get('/test',restaurant.test);
 
 //Register[no authentication middleware interfere]
 var user=require('../controllers/UserController');
@@ -33,8 +36,21 @@ var dishController=require('../controllers/DishController');
 
 apiRoutes.post('/addDish',dishController.addDish);
 
-var geoController=require('../controllers/GeoController');
+var geoController = require('../controllers/GeoController');
 apiRoutes.get('/getLocation/:lat?/:lon?',geoController.getLoctaion);
 
+//reference
+// var reference = require('../controllers/ReferenceController');
+// apiRoutes.post('/Establishment',reference.postEstablishment);
+// apiRoutes.get('/Establishment',reference.getEstablishment);
+// apiRoutes.put('/Establishment',reference.putEstablishment);
+// apiRoutes.get('/Establishment/:id',reference.preRequest,reference.middletest,reference.getEstablishmentById);
+// apiRoutes.patch('/Establishment/:id',reference.preRequest,reference.patchEstablishment);
+// apiRoutes.delete('/Establishment/:id',reference.preRequest,reference.deleteEsablishment)
+
+//apiRoutes.post('/Establishmentx',reference.testEsablishment);
+//testing
+var testcon = require('../controllers/testController');
+//apiRoutes.get('/apitest',testcon.testapi);
 
 }

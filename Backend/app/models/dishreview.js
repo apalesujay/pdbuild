@@ -1,12 +1,24 @@
 var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+var  Schema = mongoose.Schema;
+
+let Review = mongoose.model('Review', new Schema({ 
+    UserId:{type:Schema.Types.ObjectId},
+    DishId:{type:Schema.Types.ObjectId},
+    rating:{type:Number,default:null,max:5,min:1},
+    spice: {type:Number,default:null,max:4,min:1},
+    sweet: {type:Number,default:null,max:4,min:1},
+    comment: {type:String,default:null},
+    created: {type:Date,default:Date.now}
+}).index({UserId:1,DishId:1},{unique:true}));
 
 
-var Review = require('../models/review');
-// better dish feedback by user
-module.exports = mongoose.model('DishReview', new Schema({
-    RestaurantId:{type:Schema.Types.ObjectId,default:null},
-    Reviews:[Review.schema],
-    AverageRating:{type:Number,default:0},
-    RatingCount:{type:Number,default:0}
-}));
+
+
+// let DishReview = mongoose.model('DishReview', new Schema({
+//     RestaurantId:{type:Schema.Types.ObjectId,default:null},
+//     reviews:[Review.schema],
+//     averageRating:{type:Number,default:0},
+//     ratingCount:{type:Number,default:0}
+// }));
+
+module.exports = { Review }//, DishReview }

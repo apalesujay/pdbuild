@@ -2,33 +2,44 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var dish  =   new Schema({
-    DishImgUrl: {type:String, required:[true,"DishImgUrl is required"]},
-    Name:{type:String,required:[true,"Name is required"]},//name of dish,sredded pizza
-    GeneralName:{type:String,required:[true,"GeneralName is required"]},//pizza,burger
-    SpecificName:{type:String,required:[true,"Specific is required"]},//ginger tea,methi paraha
-    MenuDivision:{type:String,required:[true,"MenuDivision is required"]},//categorization for menu combos,starter,main course,bread,dessert &beverages etc.
-    ParentCuisine:{type:String,default:"INDIAN"},//cuisine contry wise if no cuisine is defined then it is shown.
-    Cuisines:{type:[String],required:[true,"Cuisines is required"]},//italian,north indian ,south indian
-    Meal:{type:[String],required:[true,"Meal is required"]},//breakfast,Mains,snacks,dinner,desert,beverage.
-    Label:{type:String,enum:["veg","non-veg","egg"],required:[true,"IsVegan is required"]},
-    IsNew:{type:Boolean,required:[true,"IsNew is required"]},
-    Sort:{type:Number,default:50},
-    SpecialIndt:[{type:String,default:null}],//special indigrent
-    Description:{type:String,default:null},
-    Price:{type:Number,required:[true,"Price is required"]},
-    _RestaurantName:{type:String,default:null},
-    _Latitude:{type:String,default:null},
-    _Longitude:{type:String,default:null},
-    _GeoLocation:{type:Schema.Types.Mixed,default:null},
-    _City:{type:String,default:null},
-    CityBest:{type:Number,default:0},
-    LocalBest:{type:Number,default:0},
-    RestaurantId:{type:Schema.Types.ObjectId,required:[true,"RestaurantId is required"]},
-    Created: {type:Date,default:Date.now}
+    name:{type:String,required:[true,"Name is required"]},//name of dish,sredded pizza
+    menuDivision:{type:String,required:[true,"MenuDivision is required"]},//categorization for menu combos,starter,main course,bread,dessert &beverages etc.
+    price:{type:Number,required:[true,"Price is required"]},
+    
+    imgMaster: {type:String,default:null},
+
+    // generalName:{type:String,default:null},//pizza,burger
+    // specificName:{type:String,default:null},//ginger tea,methi paraha
+    // commanName:[{type:String,require:[true,"commanName is required"]}],//combination of comman and specific
+    // cuisine:[{type:String,required:[true,"Cuisines is required"]}],//italian,north indian ,south indian
+    // meal:{type:[String],required:[true,"Meal is required"]},//breakfast,Mains,snacks,dinner,desert,beverage.
+    // label:{type:String,enum:["v","n","e"],required:[true,"label is required"]},
+    // vegan:{type:Boolean,enum:[true,false],default:false},
+    // description:{type:String,default:null},
+    
+    // new:{type:Boolean,required:[true,"IsNew is required"]},
+     sort:{type:Number,default:1,required:[true,"sort is required"]},
+    
+     //TODO: add Tag
+    
+    // _restaurantName:{type:String,default:null},
+    // _latitude:{type:String,default:null},
+    // _longitude:{type:String,default:null},
+    // _geoLocation:{type:Schema.Types.Mixed,default:null},
+    // _locality:{type:String,default:null},
+    // _city:{type:String,default:null},
+
+    cityBest:{type:Number,default:0},
+    localBest:{type:Number,default:0},
+
+    _dishRefdata:{type:Schema.Types.Mixed},
+    DishRefId:{type:Schema.Types.ObjectId,required:[true,"dishRefId is required"]},
+    _eateryData:{type:Schema.Types.Mixed},
+    EateryId:{type:Schema.Types.ObjectId,required:[true,"EateryId is required"]},
+    created: {type:Date,default:Date.now}
 });
 
-dish.index({Name:1,RestaurantId:1},{unique:true});
-
-
+dish.index({name:1,EateryId:1},{unique:true});
+dish.index({EateryId:1,sort:1,menuDivision:1},{unique:true});
 
 module.exports = mongoose.model('Dish',dish);

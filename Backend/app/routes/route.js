@@ -4,14 +4,36 @@
 
 module.exports = function(apiRoutes) {
 
+    var eatery = require('../routers/eateryRoute')
+    apiRoutes.use('/eatery',eatery);
     
 
+    var estab = require('../Routers/Reference/Establishment');
+    apiRoutes.use('/Establishment',estab);
 
-    var user=require("../controllers/UserController");
+    var cuisine = require('../Routers/Reference/cuisineRoute');
+    apiRoutes.use('/Cuisine',cuisine);
+
+    var feature = require('../Routers/Reference/feature');
+    apiRoutes.use('/Feature',feature);
+
+    var locality = require('../Routers/Reference/locality');
+    apiRoutes.use('/Locality',locality);
+
+    var dishref = require('../Routers/Reference/dishref');
+    apiRoutes.use('/DishRef',dishref);
+
+    var User =require("../Routers/userRoutes");
+    apiRoutes.use('/User',User);
+
+   
+    var user = require("../controllers/UserController");
     apiRoutes.get('/getUserDetail',user.getUserDetail);
 
+   
 
-var betterOneByUser=require("../controllers/betteronebyuserController");
+
+var betterOneByUser = require("../controllers/betteronebyuserController");
 apiRoutes.post('/BetterOneByUser',betterOneByUser.addBetterOneByUser); 
 
 
@@ -24,10 +46,10 @@ apiRoutes.get('/getDishesinRestaurant/:id',restaurant.getDishesinRestaurant);
 apiRoutes.get('/getRestaurants',restaurant.getRestaurants);
 apiRoutes.post('/getNearRestaurants',restaurant.getNearRestaurants);
 
-var multer  = require('multer');
-var upload = multer();
-var restaurant=require("../controllers/RestaurantController");
-apiRoutes.post('/uploadSnapShot',upload.single('photo'),restaurant.uploadSnapShot);
+// var multer  = require('multer');
+// var upload = multer();
+// var restaurant = require("../controllers/RestaurantController");
+// apiRoutes.post('/uploadSnapShot',upload.single('photo'),restaurant.uploadSnapShot);
 
 var bookmark=require("../controllers/BookmarkController");
 apiRoutes.post('/setBookmark',bookmark.setBookmark);

@@ -34,11 +34,11 @@ if(result==null)
 }
 else
 {
-    result.forEach(function(item,index){
+    result.forEach(function(item,index) {
       
-        if(currentver<item.Ver)
+        if(currentver < item.Ver)
         {
-           if(item.Force==true)
+           if(item.Force === true)
            {
                ForceCount++;
            }
@@ -46,7 +46,7 @@ else
         }
 
     });
-    if(ForceCount==0)
+    if(ForceCount === 0)
     {
      return  res.status(200).send({status:Status.NOUPDATE,msg:'No Update Required',Version:currentver});
     }

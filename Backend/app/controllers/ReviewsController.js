@@ -81,21 +81,21 @@ exports.addReviewBestDish=function(req,res)
 // }
 // });
 
-DishReview.findOne({"_id":dishId},{Reviews:0},function(err,result){
+DishReview.findOne({"_id":dishId},{Reviews:0},function(err,result) {
    console.log(result)
    if(err)
    {
      return  console.log(err);
    }
    
-   if(result!=null)
+   if(result != null)
    {
     updateReview(result);
    }
-   else if(result==null)
+   else if(result == null)
    {
 
-   Dish.findOne({"_id":dishId},function(err1,rest){
+   Dish.findOne({"_id":dishId},function(err1,rest) {
 if(err1)
 {
     return console.log(err1);
@@ -105,7 +105,7 @@ if(rest)
 {
    
        
-       var dishreview=new DishReview({
+       var dishreview = new DishReview({
            _id:mongoose.Types.ObjectId(dishId),
            RestaurantId:rest.RestaurantId,
            Reviews:[]
@@ -140,18 +140,18 @@ function updateReview(data)
     console.log((currentAverageRating*currentCount) + newUserRating);
     console.log(newAverageRating);
     DishReview.update({ "_id": dishId, "Reviews.UserId": { "$ne": userId } },
-    {"$push": {"Reviews": review},$inc:{"RatingCount":1},$set:{"AverageRating":currentAverageRating}},function(err,result){
+    {"$push": {"Reviews": review},$inc:{"RatingCount":1},$set:{"AverageRating":currentAverageRating}},function(err,result) {
         if(err)
         {    
           // Logger.logger(err,req.decoded.id,req.body,'ReviewsController addReview','not able to push result in query');
            return res.status(500).send({success:false,msg:'not able to push result in query'});    
         }
-        if(result.nModified===0)
+        if(result.nModified === 0)
         {
            //Logger.logger(result,req.decoded.id,req.body,'ReviewsController addReview','not modified');
            return res.status(400).send({success:false,msg:'not modified'});   
         }
-        else if(result.nModified===1)
+        else if(result.nModified === 1)
         {   
             res.status(200).send({success:true,msg:"request completed sucessfully"});
         }
@@ -194,7 +194,7 @@ exports.getOffers=function(req,res)
 var d=new Date();
 d.setHours(d.getHours()-1);
 
-DishReview.find({"Reviews.UserId":req.decoded.id,"Reviews.Created":{$gte:d.toISOString()}},{"Id":1,"Reviews.$":1},function(err,result){
+DishReview.find({"Reviews.UserId":req.decoded.id,"Reviews.Created":{$gte:d.toISOString()}},{"Id":1,"Reviews.$":1},function(err,result) {
     
 if(err)
 {
@@ -204,9 +204,9 @@ if(err)
 if(result)
 {
     console.log(result);
-    var dishesid=_.map(result,'_id');
+    var dishesid = _.map(result,'_id');
     
-    Restaurant.find({"Dishes":{$in:dishesid},"Deals":{$ne:null}},function(error,result1){
+    Restaurant.find({"Dishes":{$in:dishesid},"Deals":{$ne:null}},function(error,result1) {
         if(error)
         {
             console.log(error);

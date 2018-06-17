@@ -24,7 +24,7 @@ exports.checkUserExists = function (req, res) {
       });
     }
 
-    if (acc != null && acc.User.IsAuthenticatedMob == true) {
+    if (acc != null && acc.User.IsAuthenticatedMob === true) {
       //run password api.
       //or otp api as requested by user.
       console.log(acc.User.IsAuthenticatedMob);
@@ -58,7 +58,8 @@ exports.addAccount = function (req, res) {
     Password: req.body.Password,
     Email: req.body.Email,
     Mob: req.body.Mob,
-    TempMobLink: otpPin
+    TempMobLink: otpPin,
+    Role:'USER'
   });
 
   Account.findOne({
@@ -251,7 +252,7 @@ exports.otpAuthentication = function (req, res) {
 
           if (result.nModified == 1) {
             var token = jwt.sign({
-              "id": acc.id
+              "id": acc.id,"role":acc.User.Role
             }, "ilovescotchyscotch", {
               expiresIn: 60 * 60 * 24
             });
@@ -335,10 +336,11 @@ exports.authentication = function (req, res) {
               msg: "error"
             });
           }
-
+          console.log(acc.User.Role);
           if (result === true) {
             var token = jwt.sign({
-              "id": acc.id
+              "id": acc.id,
+              "role":acc.User.Role
             }, "ilovescotchyscotch", {
               expiresIn: 60 * 60 * 24
             });
