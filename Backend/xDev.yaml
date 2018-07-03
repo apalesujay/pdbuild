@@ -1,0 +1,8 @@
+env: flex
+runtime: nodejs
+service: micro
+manual_scaling: 
+  instances: 1
+env_variables: 
+  ND_VER: "1"
+  ND_ENV: "DEV"
