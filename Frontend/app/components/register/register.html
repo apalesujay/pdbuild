@@ -20,15 +20,14 @@
     <div class="login-form z-depth-1">
 
       <h1>Enter Mobile</h1>
-      <div class="input-field">
+      <div class="input-field" ng-form name="myForm">
         <i class="ion-iphone prefix"></i>
-        <input id="login-mob" type="number" ng-model="Mob" ng-maxlength="10">
+        
+        <input id="login-mob" type="number" ng-model="Mob" name="mobilenum" ng-keypress="getKeyPress($event,Mob)" ng-pattern="/^[789]{1}[0-9]{9}$/" required>
+      
         <label for="login-mob">Mobile</label>
       </div>
-
-      <div class="waves-effect waves-light btn-large accent-color block m-b-20 animated bouncein delay-2" ng-click="runCheckUserExists()">SUBMIT</div>
-      
-
+      <input type="submit" ng-disabled="myForm.mobilenum.$error.pattern || myForm.mobilenum.$error.required" ng-class="{'accent-color' : !(myForm.mobilenum.$error.pattern || myForm.mobilenum.$error.required)}" class="waves-effect waves-light btn-large bg-invalid block m-b-20 animated bouncein delay-2" style="width:100%" ng-click="runCheckUserExists()"/>
     </div>
   </div>
 

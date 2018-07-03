@@ -1,8 +1,13 @@
 app.service('MainService', function(AjaxService,AppConfig) {
         this.getResInfo=function()
         {
-        var token =localStorage.getItem("token");
-        var res= AjaxService.getWithHeaders(AppConfig.AppUrl+'/api/getRestaurants',AppConfig.Token);
+        var res= AjaxService.get(AppConfig.AppUrl+'eatery');
+        return res;
+    };
+
+
+    this.getSearchEateryList = function () {
+        var res = AjaxService.get(AppConfig.AppUrl+'eatery?fields=_id,name,locality');
         return res;
     };
        }

@@ -47,11 +47,11 @@ app.controller('bestCtrl', function ($scope, $window, $rootScope, $location, bes
 
     $scope.redirectToDish = function (name, type) {
 
-        if (type === "cuisines") {
+        if (type === "c") {
             // $location.path("/bestDish");
-            $window.location.href = "#!/bestDish/" + encodeURIComponent(name);
-        } else if (type === "common_name") {
-            $window.location.href = "#!/showDishDetails/" + encodeURIComponent(name);
+            $window.location.href = "#!/bestDish/" +"c/"+ encodeURIComponent(name);
+        } else if (type === "d") {
+            $window.location.href = "#!/bestDish/" +"d/"+ encodeURIComponent(name);
             // $location.path("/showDishDetails/"+name);
         } else {
             console.log(type);
@@ -64,8 +64,13 @@ app.controller('bestCtrl', function ($scope, $window, $rootScope, $location, bes
     //     $window.location.href = "#!/showDishDetails/" + encodeURIComponent(searchString);
     // }
 
+    $scope.redirect=function(value)
+    {
+        $location.path(value);
+    }
+
     $scope.returnLink = function () {
-        $window.history.back();
+        window.history.back();
     }
 
 });

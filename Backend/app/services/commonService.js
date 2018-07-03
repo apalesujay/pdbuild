@@ -43,25 +43,7 @@ exports.sendEmail = function () {
   });
 }
 
-//for msgotp
-const SendOtp = require('sendotp');
-const sendOtp = new SendOtp(config.SMSAuthKey);
 
-exports.sendSMS = function sendSMS(number, otp) {
-  sendOtp.send(number, SMSTitle, otp, function (error, data, response) {
-    if (error) {
-      Logger.logger(err, null, null, 'sendOTP', 'something failed in SMS API')
-      res.status(500).send({
-        success: false,
-        msg: 'something failed in SMS API'
-      });
-    }
-    if (data) {
-      console.log(data);
-    }
-
-  });
-}
 
 
 

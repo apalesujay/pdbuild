@@ -21,7 +21,7 @@ module.exports = function(err,req,res,next)
     error.location = req.url;
     error.paramlist = {body:req.body,query:req.query,params:req.params};
 //Logger.logger(err,_id,req.body,'Exception MiddleWare',err.stack);
-  Slack.sendToSlack(error.name,error.status);
+Slack.sendToSlack(error.name,error.status);
 res.status(500).send(error);
 }
 //{linenumber:error.linenumber,message:error.message,status:error.stack,number:error.number,guid:error.guid,full:error}

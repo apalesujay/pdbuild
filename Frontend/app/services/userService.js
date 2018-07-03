@@ -1,39 +1,39 @@
 app.service('userService', function(AjaxService,AppConfig) {
     
-        this.userExists=function(_Mob)
+        this.userExists=function(_Mob)  //this means user is validated or not
         {
-           var res=AjaxService.post(AppConfig.AppUrl+'/api/checkUserExists',{Mob:_Mob});
+           var res=AjaxService.get(AppConfig.AppUrl+'user/isauthenticatedmob/mob/'+_Mob);
            return res; 
         }
 
         this.addAccount=function(_Mob,_Password,_Name,_Email)
         {
-         var   res=   AjaxService.post(AppConfig.AppUrl+'/api/addAccount',{Mob:_Mob,Password:_Password,Name:_Name,Email:_Email});
+         var   res=   AjaxService.post(AppConfig.AppUrl+'user/create',{Mob:_Mob,Password:_Password,Name:_Name,Email:_Email});
          return res;
         }
 
         this.createLoginOtp=function(_Mob)
-        {
-            var   res=   AjaxService.post(AppConfig.AppUrl+'/api/createLoginOtp',{Mob:_Mob});
+        {//TODO
+            var   res=   AjaxService.post(AppConfig.AppUrl+'createLoginOtp',{Mob:_Mob});
             return res;
         }
 
         this.otpAuthentication=function(_Mob,_Otp)
         {
-         var   res=   AjaxService.post(AppConfig.AppUrl+'/api/otpAuthentication',{Mob:_Mob,Otp:_Otp});
+         var   res=   AjaxService.get(AppConfig.AppUrl+'user/otpAuthentication/mob/'+_Mob+'/otp/'+_Otp);
          return res;
         }
 
         this.authentication=function(_Mob,_Password)
         {
-            var res=AjaxService.post(AppConfig.AppUrl+'/api/authenticate',{Mob:_Mob,Password:_Password});
+            var res=AjaxService.get(AppConfig.AppUrl+'user/pwdauthentication/mob/'+_Mob+'/pwd/'+_Password);
             return res;
         }
 
-        this.getUserDetail=function()
+        this.getUserDetail = function()
         {
             var token = localStorage.getItem("token");
-            var   res=   AjaxService.getWithHeaders(AppConfig.AppUrl+'/api/getUserDetail',token);
+            var   res=   AjaxService.getWithHeaders(AppConfig.AppUrl+'user/details',AppConfig.Token);
             return res;
         }
 

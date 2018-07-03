@@ -35,7 +35,7 @@ app.controller('betterOnebyUserCtrl', function ($scope, $rootScope, $location, $
 
 
   $scope.returnLink = function () {
-    $window.history.back();
+    window.history.back();;
   }
 
 });

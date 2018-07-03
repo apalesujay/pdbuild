@@ -9,18 +9,54 @@ app.controller('mainCtrl', function ($scope, $rootScope, $location, $window, Mai
       closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
     });
 
-    document.addEventListener("backbutton", onBackKeyDown, false);
-
-    function onBackKeyDown(e) {
-      alert('Back Button is Pressed!');
-      e.preventDefault();
-      e.stopPropagation();
-
-    }
-
   };
 
   $scope.init();
+
+  //for searching
+  var getEateryList = MainService.getSearchEateryList();
+  getEateryList.then(success3, err3);
+
+  function success3(res) {
+
+      console.log(res.data);
+      
+      var options = {
+          data: res.data,
+          getValue: "name",
+          template: {
+            type: "description",
+            fields: {
+                description: "locality"
+            }
+        },
+          list: {
+              match: {
+                  enabled: true
+              },
+              onClickEvent: function () {
+                  var selectedItemValue = $("#simple").getSelectedItemData();
+                  console.log(selectedItemValue);
+                  $scope.redirectToDish(selectedItemValue.name, selectedItemValue._id);
+              }
+          }
+
+      };
+
+      $("#simple").easyAutocomplete(options);
+
+  }
+
+  function err3(res) {
+      $scope.checkResponce = "some error occured";
+      $scope.$parent.errorManager(res);
+  }
+//searching ends
+
+
+     $scope.redirectToDish = function (name, id) {
+           $window.location.href = "#!/restaurantDetails/" + encodeURIComponent(id);
+     }
 
   $scope.$parent.showLoader = true;
   var x = MainService.getResInfo();
@@ -30,7 +66,7 @@ app.controller('mainCtrl', function ($scope, $rootScope, $location, $window, Mai
     $scope.$parent.showLoader = false;
     if (res.data.length > 0) {
       res.data.map(function (item, index) {
-        item.Cuisines= item.Cuisines.join();
+        item.cuisine= item.cuisine.join();
         console.log(item.Cuisines);
       });
       $scope.restaurants = res.data;

@@ -13,12 +13,4 @@ let Review = mongoose.model('Review', new Schema({
 
 
 
-
-// let DishReview = mongoose.model('DishReview', new Schema({
-//     RestaurantId:{type:Schema.Types.ObjectId,default:null},
-//     reviews:[Review.schema],
-//     averageRating:{type:Number,default:0},
-//     ratingCount:{type:Number,default:0}
-// }));
-
-module.exports = { Review }//, DishReview }
+module.exports = { Review } 

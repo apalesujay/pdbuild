@@ -7,7 +7,6 @@ app.controller('restaurantDetailsCtrl', function ($scope, $route, $rootScope, $w
     function success(result) {
       $scope.restDetails = result.data;
       $rootScope.restData=$scope.restDetails;
-      
     }
 
     function err(result) {
@@ -16,11 +15,9 @@ app.controller('restaurantDetailsCtrl', function ($scope, $route, $rootScope, $w
 
   }
 
-  if ($rootScope.restData != undefined) {
-    $scope.restDetails = $rootScope.restData;
-  } else {
+
     $scope.getRestaurant($route.current.params.id);
-  }
+  
 
   $scope.init = function () {
     console.log($rootScope.restData);
@@ -85,7 +82,7 @@ app.controller('restaurantDetailsCtrl', function ($scope, $route, $rootScope, $w
   }
 
   $scope.showPhotos = function () {
-    $location.path("/slider/photos");
+    $location.path("/slider/restaurant");
   }
 
   $scope.showDigitalMenu=function()

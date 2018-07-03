@@ -5,20 +5,19 @@ app.controller('sliderCtrl', function ($scope, $route,$location, $rootScope,$tim
         var swiper = new Swiper('.swiper-container');
     }, 0 );
 
-   var Snapshots = $rootScope.restData.Snapshots;
+   var imgMenu = $rootScope.restData.imgMenu;
+   var imgEatery=$rootScope.restData.imgEatery;
   // console.log($scope.Snapshots);
 
 if($route.current.params.feature=='menu')
 {
-   $scope.Snapshots= filterSnapshots('menu',Snapshots);
-  
-  
+   
+   $scope.Snapshots= imgMenu; 
 }
 else
 {
-    $scope.Snapshots= filterSnapshots('photos',Snapshots);
     
-   
+    $scope.Snapshots= imgEatery;
 }
     
 

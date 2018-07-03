@@ -46,11 +46,6 @@ apiRoutes.get('/getDishesinRestaurant/:id',restaurant.getDishesinRestaurant);
 apiRoutes.get('/getRestaurants',restaurant.getRestaurants);
 apiRoutes.post('/getNearRestaurants',restaurant.getNearRestaurants);
 
-// var multer  = require('multer');
-// var upload = multer();
-// var restaurant = require("../controllers/RestaurantController");
-// apiRoutes.post('/uploadSnapShot',upload.single('photo'),restaurant.uploadSnapShot);
-
 var bookmark=require("../controllers/BookmarkController");
 apiRoutes.post('/setBookmark',bookmark.setBookmark);
 apiRoutes.get('/getBookmarks',bookmark.getBookmarks);

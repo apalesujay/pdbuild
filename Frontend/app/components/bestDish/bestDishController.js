@@ -31,7 +31,7 @@ app.controller('bestDishCtrl', function ($scope, $window, $route, $rootScope, $l
   }
 
   $scope.returnLink = function () {
-    $window.history.back();
+    window.history.back();;
   }
 
 });

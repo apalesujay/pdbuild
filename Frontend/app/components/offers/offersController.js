@@ -5,7 +5,7 @@ app.controller('offersCtrl', function ($scope,$route, $rootScope, $location, $wi
 
 $scope.returnLink=function()
 {
-$window.history.back();
+window.history.back();
 }
 
 });

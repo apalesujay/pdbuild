@@ -1,52 +1,29 @@
 const testUpload = require('express').Router();
 const fileUpload = require('express-fileupload');
-const Jimp = require('jimp');
+const StorageService =require('../services/storageService');
+var Redis = require('ioredis');
  
 // default options
 
  
-testUpload.post('/',fileUpload(),async function(req, res,next) {
+testUpload.get('/',async function(req, res,next) {
     try {
-        
-    
-  if (!req.files){
-    return res.status(400).send('No files were uploaded.');
-      }
-  // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
-  let sampleFile = req.files.sampleFile;
-  console.log(req.files);
+          
+      var redis = new Redis({port: 6379,          // Redis port
+            host: '10.160.0.9',   // Redis host
+            family: 4,           // 4 (IPv4) or 6 (IPv6)
+            password: 'qwerty',
+            db: 0});
 
-//   for(let x in req.files)
-//   {
-//       req.files[x].mv('../../' + req.files[x].name, function(err) {
-//         if (err)
-//         {
-//           return res.status(500).send(err);
-//         }
-        
-//       });
-      
-//   }
-
-    var img = await Jimp.read(sampleFile.data);
-     await  img.resize(256, 256)     
-    .quality(60)                 // set JPEG quality
-    .greyscale()                 // set greyscale
-    .write("lena-small-bw.jpg");
-    
-
-
-  return res.send('Files uploaded!');
-  
- 
-  // Use the mv() method to place the file somewhere on your server
-//   sampleFile.mv('../../filename.jpg', function(err) {
-//     if (err)
-//     {
-//       return res.status(500).send(err);
-//     }
-//     res.send('File uploaded!');
-//   });
+            redis.on("error", function (err) {
+                  console.log("Error " + err);
+              });     
+      var result =  await redis.set(req.query.key,req.query.value);
+      console.log(result);
+      var result1 =  await redis.get(req.query.getvalue);
+      console.log(result1);
+     return res.status(200).send(result + result1)
+     
 } catch (ex) {
       next(ex)  
 }

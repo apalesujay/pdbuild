@@ -8,7 +8,7 @@ app.controller('bookmarkCtrl', function ($scope, $rootScope, $location, $window,
 
   function success(res) {
     $scope.$parent.showLoader=false;
-    $scope.restaurants = res.data.data;
+    $scope.restaurants = res.data;
 
     if ($scope.restaurants.length === 0) {
       $scope.hideBookmarkMsg = false;
@@ -47,7 +47,7 @@ app.controller('bookmarkCtrl', function ($scope, $rootScope, $location, $window,
   }
 
   $scope.returnLink = function () {
-    $window.history.back();
+    window.history.back();;
   }
 
 

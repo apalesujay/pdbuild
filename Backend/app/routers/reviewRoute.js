@@ -3,17 +3,18 @@ const Review       = require('../models/dishreview').Review;
 //const DishReview   = require('../models/dishreview').DishReview;
 const Dish         = require('../models/dish');
 const U  = require("../utility/utilities");
+const Auth = require("../middlewares/authMiddleware").Auth;
 
 
-reviewRoute.post('/dishid/:dishid',async(req,res,next) => {
+reviewRoute.post('/dishid/:dishid',Auth(['USER']),async(req,res,next) => {
     try {
-
-    U.IsValidObjectId(req.decoded.id);
+     //TODO implement nessesary params
+    U.isValidObjectId(req.params.dishid);
     
     let dishId  = req.params.dishid;
     let comment = req.body.comment;
     let spice   = req.body.spice;
-    let sweet   =  req.body.sweet;
+    let sweet   = req.body.sweet;
     let rating  = req.body.rating;
     let userId  = req.decoded.id;
    
@@ -42,16 +43,16 @@ reviewRoute.post('/dishid/:dishid',async(req,res,next) => {
 });
 
 
-reviewRoute.get('/dishid/:dishid/details',async (req,res,next) => {
+reviewRoute.get('/dishid/:dishid/details', async (req, res, next) => {
 
-let result =await Review.aggregate([
+  let result = await Review.aggregate([
     {
       $group:
         {
           _id: "$DishId",
           avgrating: { $avg: "$rating" },
-          avgspice:{$avg:"$spice"},
-          avgsweet:{$avg:"$sweet"}
+          avgspice: { $avg: "$spice" },
+          avgsweet: { $avg: "$sweet" }
         }
     }
   ]);

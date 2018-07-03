@@ -57,7 +57,7 @@ app.controller('showSingleDishCtrl', function ($scope, $window, $route, $rootSco
     }
 
     $scope.returnLink = function () {
-        $window.history.back();
+        window.history.back();;
     }
 
 });

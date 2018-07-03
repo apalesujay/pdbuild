@@ -17,9 +17,9 @@
 
 
 
-<div class="p-20 animated fadeinup delay-1">
+<div class="animated fadeinup delay-1">
 
-    <div class="login-form z-depth-1">
+    <div class="login-form">
         <div id="ratingBox" class="additional"></div>
        <br>
        <textarea name="comment" ng-model="commentValue"  id="commentBox" placeholder="describe your experience that you had with the dish.what is the unique about it that make it diffenent from others." cols="30" rows="3" style="min-height:100px;border:0px;resize: none;"></textarea>
@@ -43,4 +43,8 @@
         <input id="ratinghidden" name="rate" type="hidden" />
         <br>
     </div>
+
+    <div class="messagescreen white fadein" ng-hide="hideSuccess">
+        <div class="successdiv"><img src="img/custom/successImgtwice.gif"></img></div>
+      </div>
 </div>

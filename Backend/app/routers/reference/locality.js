@@ -12,7 +12,7 @@ let preRequest = async (req, res, next) => {
   //use Projection in [Get request and query parameter fields].
   //FOR PATCH,DELETE,PUT,GET:id
   try {
-    U.IsValidObjectId(req.params.id);
+    U.isValidObjectId(req.params.id);
     let projection =
       req.query.fields !== undefined && req.method === "GET"
         ? U.getProjection(req.query)

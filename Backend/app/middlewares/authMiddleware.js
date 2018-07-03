@@ -8,11 +8,11 @@ const XX          = require('../services/customErrorService').ErrorConstants;
 
 //TODO:remove orignal jwt use authtokenLibrary custom
 let authenticate = function (token) {
-  return new Promise(resolve => {
-    if (token) {
+  return new Promise((resolve,reject) => {
+    if (typeof token !== "undefined") {
       jwt.verify(token, config.secret, { "ignoreExpiration": true }, function (failed, decoded) {
         if (failed) {
-          return resolve(new ClientError(XX.AuthError["1002"], 498, token))    //Code 498 indicates an expired or otherwise invalid token  
+          return reject(failed);    //Code 498 indicates an expired or otherwise invalid token  
         } else {
           console.log(decoded);
           if (decoded.id === undefined || decoded.role === undefined) {
@@ -37,8 +37,9 @@ let authenticate = function (token) {
 let Authentication = async function (req, res, next) {
   try {
     let decoded = await authenticate(req.headers['x-access-token']);
-    req.id = decoded.id;
-    req.role = decoded.role;
+    req.decoded = {};
+    req.decoded.id = decoded.id;
+    req.decoded.role = decoded.role;
     next();
   }
   catch (ex) {
@@ -101,9 +102,10 @@ let Auth = function(definedroles)
   {
     try {
     let decoded = await authenticate(req.headers['x-access-token']);
-    req.id = decoded.id;
-    req.role = decoded.role;
-    if(authorize(req.role,definedroles))
+    req.decoded = {};
+    req.decoded.id = decoded.id;
+    req.decoded.role = decoded.role;
+    if(authorize(req.decoded.role,definedroles))
     {
       next();
     }

@@ -14,12 +14,12 @@
 
 <div class="animated fadeinup delay-1">
     <div ng-repeat="x in Dishes">
-        <h5 style="padding:10px 20px;margin:0px;background-color: #eee;color:#999">{{x.MenuDivision | uppercase}}</h5>
+        <h5 style="padding:10px 20px;margin:0px;background-color: #eee;color:#999">{{x.menuDivision | uppercase}}</h5>
         <div class="news">
-            <div ng-repeat="m in x.details" class="media-top-object" style="padding:5px 20px;margin:0rem;" ng-click="">
+            <div ng-repeat="m in x.details" class="media-top-object" style="padding:5px 20px;margin:0rem;" ng-click="goToReview(m._id)">
                 <div class="media-body" style="display:flex;justify-content:space-between;padding-left:0px;">
                     <h4 class="news-title" style="margin:0px;;line-height:40px">
-                        {{m.Name}}  
+                        {{m.name}}  
                     </h4>
                     <div class="card-share">
                         <i class="ion-ios-arrow-forward" id="photos"></i>

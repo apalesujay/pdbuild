@@ -3,13 +3,13 @@ app.controller('showDishDetailsCtrl', function ($scope, $window, $route, $rootSc
 
 
 
-  var x = bestDishService.getBestDishCommanName($route.current.params.common_name);
+  var x = bestDishService.getBestDish($route.current.params.type,$route.current.params.name);
   x.then(success, err);
 
   function success(res) {
 
-    console.log(res.data.data);
-    $scope.bestDishDetails = res.data.data;
+    console.log(res.data);
+    $scope.bestDishDetails = res.data;
 
   }
 
@@ -32,6 +32,6 @@ app.controller('showDishDetailsCtrl', function ($scope, $window, $route, $rootSc
 
   $scope.returnLink = function () {
     console.log('back');
-    $window.history.back();
+    window.history.back();;
   }
 });

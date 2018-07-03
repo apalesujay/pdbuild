@@ -25,15 +25,18 @@ let BussinessHours = mongoose.model('BussinessHours' ,new Schema({
 
 
 let EaterySchema =new Schema({  
-    name:{type:String,required:[true,"Restaurant name is required"]},
+    name:{type:String,required:[true,"eatery name is required"]},
     phone:{type:[String],required:[true,"Mobile Number is required"]},
-    bussinessHours:{type:BussinessHours.schema},//TODO:make schema 06:30AM to 11:00PM
+    bussinessHours:{type:BussinessHours.schema,default:null},//TODO:make schema 06:30AM to 11:00PM
     forcedHours:{type:String,enum:['open','close',null],default:null},
     cuisine:{type:[String],required:[true,"Cuisines is Required Seperated by Commas"]},//Multicusine,Punjabi
     establishment:{type:[String],required:[true,"Type is Required Seperated by Commas"]},//casual dining,Pub
-    itemAvgCost:{type:Number,required:[true,"itemAvgcost is Required"]},// TODO:Should generate from menu the geometric mean of the values and lower to higher
+    feature:{type:[String]},
+    itemAvgCost:{type:Number},// TODO:Should generate from menu the geometric mean of the values and lower to higher
+    costForTwo:{type:Number,required:[true,"costforTwo is Required "]},
     address:{type:String,required:[true,"Address is Required"]},
     locality:{type:String,required:[true,"locality is Required"]},
+    spot:{type:String,default:""},
     city:{type:String,enum:['Pune'],default:"Pune",required:[true,"City is Required"]},
     latitude:{type:String,required:[true,"Latitude is Required"]},
     longitude:{type:String,required:[true,"Longitude is Required"]},
@@ -43,8 +46,8 @@ let EaterySchema =new Schema({
     imgMaster:{type:[String]},
     imgMenu:{type:[String]},
     imgEatery:{type:[String]},
+    //TODO add features
     //auto added
-    dishes:{type:[Schema.Types.ObjectId],default:[]},
     nameId:{type:String,unique:true},//combination of Name-locality-city  should be unique
     //forign keys
     MobId:{type:String,required:[true,"Mobid is Required"],unique:true},
@@ -84,23 +87,32 @@ EaterySchema.pre('validate',async function(next){
     }
 });
 
-EaterySchema.post('validate', function(doc,next) {
+EaterySchema.post('validate',function(doc,next) {
     try {
         this.geoLocation = {
           type: 'Point',
           coordinates: [Number(this.latitude), Number(this.longitude)]
         }
 
-        if(this.nameId === undefined || this.nameId === null || this.nameId === "" )
+        if(this.spot === "")
         {
-             let nid = this.name +"-"+this.locality +"-"+ this.city;
-             this.nameId = nid.split(' ').join('-')
+             let nid = this.name + "-" + this.locality + "-" + this.city;
+             this.nameId = nid.split(' ').join('-');
+        }
+        else 
+        {
+            let nid = this.name + "-" + this.spot + "-" + this.locality + "-" + this.city;
+            this.nameId = nid.split(' ').join('-');
         }
       next();
     } catch (ex) {
       next(ex);
     }
   });
+
+  
+EaterySchema.index({name:1,locality:1,spot:1,city:1},{unique:true})
+EaterySchema.index({geoLocation: "2dsphere"});
 
 let Eatery =  mongoose.model('Eatery',EaterySchema);
 

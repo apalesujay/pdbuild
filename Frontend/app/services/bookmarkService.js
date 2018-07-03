@@ -2,16 +2,16 @@ app.service('bookmarkService', function(AjaxService,AppConfig) {
 
         this.addToBookmark=function(_BookmarkId)
         {   
-        var token =localStorage.getItem("token");
-        var res= AjaxService.postWithHeaders(AppConfig.AppUrl+'/api/setBookmark',{BookmarkId:_BookmarkId},token);
+        
+        var res= AjaxService.postWithHeaders(AppConfig.AppUrl+'myfav/eatery/'+_BookmarkId,{},AppConfig.Token);
         return res;
         };
 
 
         this.getBookmarks=function()
         {
-            var token =localStorage.getItem("token");
-            var res= AjaxService.getWithHeaders(AppConfig.AppUrl+'/api/getBookmarks',token);
+            
+            var res= AjaxService.getWithHeaders(AppConfig.AppUrl+'myfav/eatery',AppConfig.Token);
             return res;
         };
        
@@ -19,15 +19,15 @@ app.service('bookmarkService', function(AjaxService,AppConfig) {
        this.IsBookmarked=function(id)
        {
         var res=false; 
-        var token =localStorage.getItem("token");
-        if(token===undefined)
+        
+        if(AppConfig.Token == undefined)
         {
             res.data=false;
              return res;
         }
         else
         {
-        res= AjaxService.getWithHeaders(AppConfig.AppUrl+'/api/IsBookmarked/'+id,token);
+        res= AjaxService.getWithHeaders(AppConfig.AppUrl+'myfav/eatery/'+ id +'/exist',AppConfig.Token);
         return res;
         }
     };

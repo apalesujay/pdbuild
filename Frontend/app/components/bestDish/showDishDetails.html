@@ -19,21 +19,21 @@
     <div class="news" style="position:relative">
             <div ng-repeat="DishDetail in bestDishDetails">
         <div class="media-top-object animated fadeinright z-depth-1 delay-2" style="padding:2px 2px" ng-click="showSingleDish(DishDetail._id)">
-          <div style="float:left"><img style="width:150px;height:100px" ng-src="{{DishDetail.DishImgUrl}}" alt=""></div>
+          <div style="float:left"><img style="width:150px;height:100px" ng-src="{{DishDetail.imgMain}}" alt=""></div>
           <div style="padding:5px 15px;">
             <h4 class="news-title">
-              <div>{{DishDetail._RestaurantName}}</div>
+              <div>{{DishDetail._eateryD.name}}</div>
             </h4>
-            <p class="small" style="margin-bottom:0rem">{{DishDetail._City+","+DishDetail._Locality}}</p>
-            <p class="small" style="color:#f39c12;margin-bottom:0rem" >{{DishDetail.Name}}</p>
+            <p class="small" style="margin-bottom:0rem">{{DishDetail._eateryD.city+","+ DishDetail._eateryD.locality}}</p>
+            <p class="small" style="color:#f39c12;margin-bottom:0rem" >{{DishDetail.name}}</p>
             <ul id="bestdishlist" style="margin:0">
-            <li><p class="small" style="margin-bottom:0rem;"><span class="deals">&#8377;{{DishDetail.Price}}</span></p></li>
-            <li ng-show="DishDetail.Label=='veg'"><i style="font-size:11px;color:#4caf50" class="ion-record"></i></li>
-            <li ng-show="DishDetail.Label=='non-veg'"><i style="font-size:11px;color:#e73d1f" class="ion-record"></i></li>
-            <li ng-show="DishDetail.Label=='egg'"><i style="font-size:11px;color:#f1c40f" class="ion-record"></i></li>
+            <li><p class="small" style="margin-bottom:0rem;"><span class="deals">&#8377;{{DishDetail.price}}</span></p></li>
+            <li ng-show="DishDetail.label=='v'"><i style="font-size:11px;color:#4caf50" class="ion-record"></i></li>
+            <li ng-show="DishDetail.label=='n'"><i style="font-size:11px;color:#e73d1f" class="ion-record"></i></li>
+            <li ng-show="DishDetail.label=='e'"><i style="font-size:11px;color:#f1c40f" class="ion-record"></i></li>
           </ul>
           </div>
-          <div class="" ng-click="" style="position:absolute;right:0;top:0;padding:25px 20px;color:#de5757">
+          <div class="" ng-click="openMaps(DishDetail._Latitude,DishDetail._Longitude);$event.stopPropagation();" style="position:absolute;right:0;top:0;padding:25px 20px;color:#de5757">
             <i style="font-size:3rem;" class="ion-location"></i>
           </div>
         </div>  

@@ -1,7 +1,6 @@
 'use Strict'
 
 
-var Logger = require('../../app/services/loggerService');
 var versioning=require('../../app/models/version');
 exports.checkAppUpgradation =function(req,res)
 {

@@ -1,6 +1,62 @@
+//cordova code........Begin
+
+document.addEventListener("deviceready", onDeviceReady, false);
+
+function onDeviceReady() {
+    StatusBar.backgroundColorByHexString("#d43c3c");
+}
+
+
+
+//Ends
+
+//Angular
 var app = angular.module('myApp', ['ngRoute']);
 
-app.controller('indexCtrl', function ($scope, $rootScope, $timeout,$location) {
+angular.element(function() {
+    angular.bootstrap(document, ['myApp']);
+});
+//directive for number restriction
+app.directive("limitTo", [function() {
+    return {
+        restrict: "A",
+        link: function(scope, elem, attrs,mCtrl) {
+            var limit = parseInt(attrs.limitTo);
+            angular.element(elem).on("keyup", function(e) {
+                if (this.value.length == limit) e.preventDefault();
+                 });
+        }
+    }
+}]);
+
+
+app.controller('indexCtrl', function ($scope, $rootScope, $timeout,$location,$window) {
+    
+    document.addEventListener("backbutton", onBackKeyDown, false);
+    //var for double tap exit
+    //var lastTimeBackPress=0;   
+    //var timePeriodToExit=2000;
+    function onBackKeyDown(e) {
+        if($location.path()=='/main')
+        {
+        navigator.app.exitApp();
+        }
+        else
+        {
+        $window.history.back();
+        }
+        
+        //this is the implemntation for double tap exit
+        // if(new Date().getTime() - lastTimeBackPress < timePeriodToExit){
+        //     navigator.app.exitApp();
+        // }
+        //lastTimeBackPress=new Date().getTime();
+
+        
+      }
+
+
+
 
 //loader
 $scope.showLoader=false;
@@ -99,11 +155,11 @@ app.config(function ($routeProvider) {
             templateUrl: "app/components/bestDish/best.html",
             controller: 'bestCtrl'
         })
-        .when("/bestDish/:cuisines", {
-            templateUrl: "app/components/bestDish/bestDish.html",
-            controller: 'bestDishCtrl'
+        .when("/bestDish/:type/:name", {
+            templateUrl: "app/components/bestDish/showDishDetails.html",
+            controller: 'showDishDetailsCtrl'
         })
-        .when("/showDishDetails/:common_name", {
+        .when("/bestDish/:type/:name", {
             templateUrl: "app/components/bestDish/showDishDetails.html",
             controller: 'showDishDetailsCtrl'
         })

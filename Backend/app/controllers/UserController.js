@@ -32,7 +32,7 @@ exports.checkUserExists = function (req, res) {
         Authenticated: 1
       });
 
-    } else if (acc == null || acc != null && acc.User.IsAuthenticatedMob == false) {
+    } else if (acc === null || (acc != null && acc.User.IsAuthenticatedMob === false)) {
 
       console.log('register journey');
       return res.status(200).send({

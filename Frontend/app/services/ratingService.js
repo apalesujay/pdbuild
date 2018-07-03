@@ -1,9 +1,9 @@
 app.service('ratingService', function(AjaxService,AppConfig) {
 
 
-    this.addReviewBestDish = function (params) {
+    this.addReview = function (dishid,params) {
         var token = localStorage.getItem("token");
-        var res = AjaxService.postWithHeaders(AppConfig.AppUrl + '/api/addReviewBestDish',params,token);
+        var res = AjaxService.postWithHeaders(AppConfig.AppUrl + 'review/dishid/'+dishid,params,token);
         return res;
     };
 

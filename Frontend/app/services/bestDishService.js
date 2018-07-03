@@ -1,20 +1,10 @@
 app.service('bestDishService', function(AjaxService,AppConfig) {
     
         
-        this.addBestDish=function(params)
-        {   
-            var token =localStorage.getItem("token");
-        var res= AjaxService.postWithHeaders(AppConfig.AppUrl+'/api/addBestDish',params,token);
-        return res;
-        };
+        
 
 
-        this.doBestDishExists=function(_BestDishName)
-        {
-            var token =localStorage.getItem("token");
-            var res= AjaxService.postWithHeaders(AppConfig.AppUrl+'/api/doBestDishExists',{Name:_BestDishName},token);
-            return res;
-        }
+        
 
         this.getDistinctCuisines=function()
         {
@@ -32,8 +22,7 @@ app.service('bestDishService', function(AjaxService,AppConfig) {
 
         this.getAllDistinct=function()
         {
-            var token =localStorage.getItem("token");
-            var res= AjaxService.getWithHeaders(AppConfig.AppUrl+'/api/getAllDistinct',token);
+            var res= AjaxService.get(AppConfig.AppUrl+'additional/search');
             return res;  
         }
 
@@ -44,17 +33,16 @@ app.service('bestDishService', function(AjaxService,AppConfig) {
             return res;
         }
 
-        this.getBestDishCommanName=function(_comman_name)
+        this.getBestDishCommanName=function(_type,_name)
         {
             var token =localStorage.getItem("token");
-            var res= AjaxService.getWithHeaders(AppConfig.AppUrl+'/api/getBestDish2/?dish='+_comman_name,token);
+            var res= AjaxService.getWithHeaders(AppConfig.AppUrl+'dish/bestdish/'+_type+"/"+_name,token);
             return res;
         }
 
-        this.getBestDish=function()
+        this.getBestDish=function(_type,_name)
         {
-            var token =localStorage.getItem("token");
-            var res= AjaxService.getWithHeaders(AppConfig.AppUrl+'/api/getBestDish',token);
+            var res= AjaxService.getWithHeaders(AppConfig.AppUrl+'dish/bestdish/'+_type+"/"+_name,AppConfig.Token);
             return res;
         }
 

@@ -1,11 +1,8 @@
 app.service('AppConfig', [ function () {
     
-// this.AppUrl = "https://obscure-castle-50819.herokuapp.com";
+   //this.AppUrl = "https://nodeshivam.appspot.com/api/";
 
-   this.AppUrl = "http://localhost:8080";
+   this.AppUrl = "http://localhost:8080/api/";
    
-   this.Token=function()
-   {
-       return localStorage.getItem("token");
-   }
+   this.Token = localStorage.getItem("token");
 }]);

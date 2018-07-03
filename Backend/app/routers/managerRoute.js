@@ -39,3 +39,10 @@ Manager.get('/version/:version', async (req, res, next) => {
     catch (ex) { next(ex); }
 });
 
+Manager.get('/stats',async (req,res,next) => {
+let env = process.env;
+return res.status(200).send({Env:env});
+});
+
+
+module.exports = Manager;

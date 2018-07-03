@@ -1,5 +1,7 @@
-app.controller('dishReviewCtrl', function ($scope,$route, $rootScope, $location, $window,ratingService) 
+app.controller('dishReviewCtrl', function ($scope,$route, $rootScope, $timeout,$location, $window,ratingService) 
 {
+    $scope.hideSuccess = true;
+
     $scope.init = function () {
         angular.element(document).ready(function () {
             $("#ratingBox").rating({
@@ -25,7 +27,7 @@ app.controller('dishReviewCtrl', function ($scope,$route, $rootScope, $location,
 
     $scope.returnLink=function()
     {
-        $window.history.back();
+        window.history.back();;
     }
 
     $scope.setRating = function () {
@@ -37,17 +39,20 @@ app.controller('dishReviewCtrl', function ($scope,$route, $rootScope, $location,
         $scope.ratingValue = document.getElementById("ratinghidden").value;
         console.log($scope.ratingValue);
         var params = {
-            "DishId": $route.current.params.dishid,
-            "Comment":cV,
-            "Rating": $scope.ratingValue
+            "comment":cV,
+            "rating": $scope.ratingValue
         };
-        var x = ratingService.addReviewBestDish(params);
+        var x = ratingService.addReview($route.current.params.dishid,params);
         console.log(params);
         x.then(success, err);
 
         function success(result) {
-            $scope.ratingBar = false;
-            alert("added successfully" + $scope.ratingValue);
+            $scope.hideSuccess = false;
+            $timeout(function () {
+              window.history.back();
+              $scope.hideSuccess = true;
+            },3000);
+            
         }
 
         function err(error) {

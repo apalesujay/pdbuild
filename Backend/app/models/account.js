@@ -21,8 +21,8 @@ let User = mongoose.model('User', new Schema({
 
 let Account = mongoose.model('Account', new Schema({ 
     User: User.schema,
-    RestaurantList:[{type:Schema.Types.ObjectId}],
-    DishList:[{type:Schema.Types.ObjectId}]
+    FavEatery:[{type:Schema.Types.ObjectId}],
+    FavDish:[{type:Schema.Types.ObjectId}]
 }));
 
 module.exports = {Account,User}

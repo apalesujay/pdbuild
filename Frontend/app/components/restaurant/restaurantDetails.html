@@ -16,7 +16,7 @@
 
         <!-- Project Image -->
         <div class="z-depth-1 animated fadein" style="position:relative">
-                <img ng-src="{{restDetails.Snapshots[0].ImageURL}}" alt="">
+                <img ng-src="https://storage.googleapis.com/joint-207510.appspot.com/eatery/{{restDetails.imgMaster[0]}}" alt="">
                 <h2 style="position: absolute;color:white;z-index: 2;bottom: 0px;padding-left: 20px;font-size: 25px;">{{restDetails.Name}}</h2>
                 <p style="position: absolute;color:white;z-index: 2;bottom: -25px;padding-left: 21px;font-size: 15px;" class="ng-binding">{{restDetails.Location}}</p>
                 <h2 style="position: absolute;color:white;z-index: 2;bottom: 0px;right:0px;padding-right: 20px;font-size: 25px;">{{restDetails.Deals}}</h2>
@@ -27,12 +27,12 @@
 
                 <div class="card-feedback">
                         <div class="card-share">
-                                <i class="ion-ios-telephone" id="telephone" style="color:#2ecc71" ng-click="openDial(restDetails.Mobile)"></i>
+                                <i class="ion-ios-telephone" id="telephone" style="color:#2ecc71" ng-click="openDial(restDetails.phone)"></i>
                                 <span></span>
 
                         </div>
                         <div class="card-share">
-                                <i class="ion-location" id="location" style="color:#3498db" ng-click="openMaps(restDetails.Latitude,restDetails.Longitude)"></i>
+                                <i class="ion-location" id="location" style="color:#3498db" ng-click="openMaps(restDetails.latitude,restDetails.longitude)"></i>
                                 <span></span>
 
                         </div>
@@ -46,7 +46,7 @@
                         <div class="col s6">
                                 <span class="customsmall">TYPE</span>
                                 <ul class="customsmallcontent">
-                                        <li ng-repeat="x in restDetails.Establishment">{{x}}</li>
+                                        <li ng-repeat="x in restDetails.establishment">{{x}}</li>
                                 </ul>
                                 <span class="customsmall">TIME</span>
                                 <ul class="customsmallcontent" style="margin-top:0px">
@@ -54,14 +54,14 @@
 
                                 </ul>
                                 <span class="customsmall">ADDRESS</span>
-                                <p class="customsmallcontent">{{restDetails.Address}}</p>
+                                <p class="customsmallcontent">{{restDetails.address}}</p>
                         </div>
                         <div class="col s6">
                                 <span class="customsmall">AVERAGE COST</span>
-                                <p class="customsmallcontent">&#8377{{restDetails.AverageCost}}/-</p>
+                                <p class="customsmallcontent">&#8377{{restDetails.itemAvgCost}}/-</p>
                                 <span class="customsmall">CUISINES</span>
                                 <ul class="customsmallcontent">
-                                        <li ng-repeat="x in restDetails.Cuisines">{{x}}</li>
+                                        <li ng-repeat="x in restDetails.cuisine">{{x}}</li>
                                 </ul>
 
                         </div>

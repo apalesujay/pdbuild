@@ -23,6 +23,24 @@
 
  };
 
+ let FileUploadError = class FileUploadError extends Error{    //all error with 500.
+  constructor (err,data) {
+  
+    // Calling parent constructor of base Error class.
+    super(err);
+    
+    // Saving class name in the property of our custom error as a shortcut.
+    this.data = data || {};
+
+    // Capturing stack trace, excluding constructor call from it.
+    Error.captureStackTrace(this, this.constructor);
+    
+    // You can use any additional properties you want.
+    // I'm going to use preferred HTTP status for this error types.
+    // `500` is the default value if not specified.
+  }
+};
+
   let AppError = class ApplicationError extends Error{    //all error with 500.
     constructor (errObj,status,data) {
     
@@ -47,6 +65,7 @@
 
  const ErrorName = {
   PARAMETER_VALIDATION_ERROR:"ParameterValidationError",
+  FILE_UPLOAD_ERROR:"FileUploadError",
   AUTHTHENTICATION_ERROR:'AuthenticationError',
   AUTHORIZATION_ERROR:'AuthorizationError',
   CRITICAL_APPLICATION_ERROR:"CriticalApplicationError",
@@ -71,6 +90,12 @@ const ErrorConstants = {
   1003:{name:ErrorName.AUTHTHENTICATION_ERROR,code:1003,message:'Failed to authenticate token : Payloads not Found'},
   1100:{name:ErrorName.AUTHORIZATION_ERROR,code:1100,message:'Consumer Not Authorised'}
   },
+  FILE_UPLOAD_ERROR:
+  {
+   8001:{name:ErrorName.FileUploadError,code:8001,message:'Fieldname not defined'},
+   8002:{name:ErrorName.FileUploadError,code:8002,message:'files not defined or provided'},
+   8003:{name:ErrorName.FileUploadError,code:8003,message:'Wrong MimeType'},
+  },
   CriticalApplicationError:
   {
     6001:{ name:ErrorName.CRITICAL_APPLICATION_ERROR,code:6001,message:'code should not have hit this it should no go here' }
@@ -82,4 +107,4 @@ const ErrorConstants = {
 } 
 
 
-module.exports = { ClientError,AppError,ErrorConstants };
+module.exports = { ClientError,AppError,ErrorConstants,FileUploadError };
