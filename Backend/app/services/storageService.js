@@ -2,7 +2,7 @@
 const config = require('../../config');
 const Storage = require('@google-cloud/storage');
 const storage = new Storage({keyFilename:'configStorage.json'});
-const Bucket  = storage.bucket('joint-207510.appspot.com');
+const Bucket  = storage.bucket('fluent-night-208408.appspot.com');
 const stream = require('stream');
 const ClientError = require('../services/customErrorService').ClientError;
 const XX          =require('../services/customErrorService').ErrorConstants;
