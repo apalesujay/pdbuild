@@ -232,7 +232,7 @@ eateryRoute.post('/:id/upload/imgmaster-s', fileUpload(), async (req, res, next)
         let eatery = await Eatery.findOne({ _id: eateryid });
         let imgpath = [];
         if (eatery !== undefined && eatery !== null) {
-            let result = await StorageService.uploadFiles('/eatery-s/' + eateryid + '/master/', files,'imgmaster');
+            let result = await StorageService.uploadFiles('/eatery-s/' + eateryid + '/master/',files,'imgmaster-s');
             if (result.uploadedfiles === result.totalfiles) {
                 for (let name of result.uploadedfilesname) {
                     imgpath.push(eateryid + '/master/' + name);

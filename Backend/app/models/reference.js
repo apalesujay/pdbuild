@@ -29,11 +29,11 @@ let dishTagSchema = new Schema({
     });
 
 
-let Establisment = mongoose.model('Establishment', establishmentSchema);
-let Feature = mongoose.model('Feature',featureSchema);
-let Cuisine = mongoose.model('Cuisine',cuisineSchema);
-let Locality = mongoose.model('Locality',localitySchema);
-let DishTag  = mongoose.model('DishTag',dishTagSchema);
+let Establisment = mongoose.model('Establishment',establishmentSchema);
+let Feature      = mongoose.model('Feature',featureSchema);
+let Cuisine      = mongoose.model('Cuisine',cuisineSchema);
+let Locality     = mongoose.model('Locality',localitySchema);
+let DishTag      = mongoose.model('DishTag',dishTagSchema);
 
 
 

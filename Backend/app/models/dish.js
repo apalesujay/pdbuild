@@ -16,8 +16,8 @@ var dish  =   new Schema({
     imgMain: {type:String,default:null},
     sort:{type:Number,default:1,required:[true,"sort is required"]},
 
-    cityBest:{type:Number,default:0},
-    localBest:{type:Number,default:0},
+    cityBest:{type:Number,default:999},
+    localBest:{type:Number,default:999},
 
     DishTag:{type:[String],required:[true,"dishTag is required"]},
     EateryId:{type:Schema.Types.ObjectId,required:[true,"EateryId is required"]},

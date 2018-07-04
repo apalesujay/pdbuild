@@ -3,6 +3,7 @@ var Schema = mongoose.Schema;
 
 const Cuisine = require('../models/reference').Cuisine;
 const Establishment = require('../models/reference').Establisment;
+const Feature    = require('../models/reference').Feature;
 const Locality      = require('../models/reference').Locality;
 const ClientError = require('../services/customErrorService').ClientError;
 const XX          = require('../services/customErrorService').ErrorConstants;
@@ -61,13 +62,15 @@ EaterySchema.pre('validate',async function(next){
     try {
         let orignalCuisineCount = this.cuisine.length;
         let orignalEstablishmentCount = this.establishment.length;
+        let orignalFeatureCount = this.feature.length;
         let orignalLocalityCount = 1;
 
         let returnedCuisineCount;       // = await Cuisine.find({ "value": { $in: this.cuisine } }).count();
         let returnedEstablishmentCount; //  = await Establishment.find({ "value": { $in: this.establishment } }).count();
         let returnedLocalityCount;    //   = await Locality.find({ "value": { $in: this.locality } }).count();
+        let returnedFeatureCount;
 
-       [returnedCuisineCount,returnedEstablishmentCount,returnedLocalityCount] = await Promise.all([Cuisine.find({ "value": { $in: this.cuisine } }).count(),Establishment.find({ "value": { $in: this.establishment } }).count(),Locality.find({ "value": { $in: this.locality } }).count()]);
+       [returnedCuisineCount,returnedEstablishmentCount,returnedFeatureCount,returnedLocalityCount] = await Promise.all([Cuisine.find({ "value": { $in: this.cuisine } }).count(),Establishment.find({ "value": { $in: this.establishment } }).count(),Feature.find({"value": {$in:this.feature}}).count(),Locality.find({ "value": { $in: this.locality } }).count()]);
 
         if (orignalCuisineCount !== returnedCuisineCount) {
             throw new ClientError(XX.ParameterValidationError["5006"], 400, { "CuisineMismatch":returnedCuisineCount });
@@ -79,6 +82,10 @@ EaterySchema.pre('validate',async function(next){
         else if(orignalLocalityCount !== returnedLocalityCount)
         {
             throw new ClientError(XX.ParameterValidationError["5006"], 400, { "LocalityMismatch":returnedLocalityCount });
+        }
+        else if(orignalFeatureCount !== returnedFeatureCount)
+        {
+            throw new ClientError(XX.ParameterValidationError["5006"], 400, { "FeatureMismatch":returnedLocalityCount });
         }
 
         next();

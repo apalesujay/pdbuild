@@ -77,10 +77,10 @@ UserRoute.post('/create', async (req, res, next) => {
 
 });
 
-UserRoute.get('/isauthenticatedmob/mob/:mob',preRequestByMob, async (req, res, next) => {
+UserRoute.get('/isauthenticatedmob/mob/:mob', async (req, res, next) => {
     try {
 
-        let account = req.account;
+        let account = await Account.findOne({"User.Mob": req.params.mob});
 
         if (account != null && account.User.IsAuthenticatedMob === true) {
             return res.status(200).send({Authenticated: 1});   // TODO: make boolean
