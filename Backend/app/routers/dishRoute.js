@@ -105,8 +105,8 @@ dishRoute.get('/eateryid/:eateryid/menu',async (req,res,next) => {
                $project:{"_id":1,"menuDivision":1,"price":1,"name":1}
            }
          ]);
-         let proccessedDishesList
-        if(result!==null || result !==undefined)
+        let proccessedDishesList;
+        if(result !== null || result !== undefined)
         {
          proccessedDishesList = _(result)
          .groupBy("menuDivision")
