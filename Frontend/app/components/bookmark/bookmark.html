@@ -18,17 +18,15 @@
     <div ng-repeat="rest in restaurants">
       <div class="media-top-object animated fadeinright z-depth-1 delay-2" style="padding:5px 5px;" ng-click="showRestaurant(rest)">
         <div class="media-left" style="width:auto;">
-          <img style="width:150px;height:100px;" ng-src="{{rest.Snapshots[0].ImageURL}}" alt="">
+          <img style="width:150px;height:100px;" ng-src="{{StorageUrl}}/eatery-s/{{rest.imgMaster[0]}}" alt="">
         </div>
         <div class="media-body" style="padding-bottom: 8px;padding-top: 8px;">
           <h4 class="news-title" style="margin:0px">
-            <div>{{rest.Name}}</div>
+            <div>{{rest.name}}</div>
           </h4>
-          <p class="small">Bellendur Banglore</p>
-          <p class="small" style="color:#f39c12">{{rest.Cuisines}}</p>
-          <p class="small">
-            <span class="deals">save {{rest.Deals}} on {{rest.DealsOn}}</span>
-          </p>
+          <p class="small" >{{rest.locality +"  "+rest.city}}</p>
+          <p class="small" style="color:#f39c12">{{rest.cuisine}}</p>
+          <p class="small" ng-hide="rest.dealAmount==null"><span class="deals">{{rest.dealAmount}}% discount</span></p>
 
         </div>
       </div>

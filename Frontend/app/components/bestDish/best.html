@@ -37,15 +37,17 @@
             <h4 style="margin-bottom:1.1rem;">Top Recommended</h4>
             <div class="row">
 
-              <div class="topBox col s6" ng-click="redirect('/showSingleDish/5addc68a8469c023e06b531d')">
+                <div ng-repeat="recDish in RecDishes">
+              <div class="topBox col s6" ng-click="redirect('/showSingleDish/{{recDish._id}}')">
                 <div class="innerBox">
-                <img src="https://storage.googleapis.com/nodeshivam.appspot.com/images/data2/data3/virgin%20moito.jpg" class="imageBox" alt="">
+                <img src="{{StorageUrl}}/eatery-s/{{recDish.url}}" class="imageBox" alt="">
                 <div class="overlayBox"></div>
-                <div class="overlaytextBox">V Mojito</div>
+                <div class="overlaytextBox">{{recDish.name}}</div>
                 </div>
-              </div>
+                </div>
+                </div>
 
-              <div class="topBox col s6" ng-click="redirect('/showSingleDish/5addcaea8469c023e06b531f')">
+              <!-- <div class="topBox col s6" ng-click="redirect('/showSingleDish/5addcaea8469c023e06b531f')">
                   <div class="innerBox">
                   <img src="https://storage.googleapis.com/nodeshivam.appspot.com/images/data2/data3/cold%20coffee.jpg" class="imageBox" alt="">
                   <div class="overlayBox"></div>
@@ -83,7 +85,7 @@
                           <div class="overlayBox"></div>
                           <div class="overlaytextBox">Rasmalai</div>
                           </div>
-                        </div>
+                        </div> -->
 
                        
 

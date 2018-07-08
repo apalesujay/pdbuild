@@ -8,7 +8,6 @@ app.controller('mainCtrl', function ($scope, $rootScope, $location, $window, Mai
       edge: 'left', // Choose the horizontal origin
       closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
     });
-
   };
 
   $scope.init();
@@ -65,9 +64,8 @@ app.controller('mainCtrl', function ($scope, $rootScope, $location, $window, Mai
   function success(res) {
     $scope.$parent.showLoader = false;
     if (res.data.length > 0) {
-      res.data.map(function (item, index) {
-        item.cuisine= item.cuisine.join();
-        console.log(item.Cuisines);
+      res.data.map(function (item,index) {
+        item.cuisine = item.cuisine[0]+", "+item.cuisine[1];
       });
       $scope.restaurants = res.data;
     }

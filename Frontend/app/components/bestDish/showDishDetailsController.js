@@ -19,9 +19,9 @@ app.controller('showDishDetailsCtrl', function ($scope, $window, $route, $rootSc
 
 
 
-  $scope.showSingleDish = function (_id) {
+  $scope.restaurantDetails = function (_id) {
 
-    $location.path("/showSingleDish/" + _id);
+    $location.path("/restaurantDetails/" + _id);
 
   }
 

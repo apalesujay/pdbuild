@@ -47,6 +47,7 @@ body
 }
 
 .customsmallcontent {
+    margin-top: 0;
     font-size: 85% !important;
     font-weight: 400;
     color: #2c3e50;

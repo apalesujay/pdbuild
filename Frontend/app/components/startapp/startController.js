@@ -1,4 +1,5 @@
-app.controller('startCtrl', function ($scope, $route, $rootScope, $window,$timeout, $location,LocationService) {
+app.controller('startCtrl', function ($scope, $route, $rootScope, $window,$timeout, $location,LocationService,ManageService) {
+
 
     $scope.Authenticated = function () {
         var token = localStorage.getItem("token");
@@ -10,69 +11,95 @@ app.controller('startCtrl', function ($scope, $route, $rootScope, $window,$timeo
     }
 
 
-    $scope.getLocation = function () {
-        if (navigator.geolocation) {
-            // navigator.geolocation.getCurrentPosition(showPosition, showError);
-            var position = {
-                coords: {
-                    latitude: "18.5204",
-                    longitude: "73.8567"
-                }
-            };
-            showPosition(position);
-           $scope.Authenticated();
-        } else {
-            alert("Geolocation is not supported by this browser.");
+   $scope.starting = function(){
+       var x = ManageService.getAppVersionStatus();
+       x.then(success,error);
 
-        }
+       function success(res) {
+          if(res.data.status == 0)
+          {
+              $scope.Authenticated();
+          }
+          else if(res.data.status == 2)
+          {
+              $location.path('/update');
+          }
+       }
+
+       function error(res){
+          $scope.Authenticated();
+       } 
     }
 
-    function showPosition(position) {
+    
 
-        //alert("Latitude: " + position.coords.latitude + "Longitude: " + position.coords.longitude);
-        LocationService.getLocation(position.coords.latitude,position.coords.longitude).then(function(res){
-        if(res=="err")
-        {
-        alert(err);
-        }
-        else if(res=="wrongLocation")
-        {
-        $scope.availableMsg="Service not available in your town currently";
-        }
-        else
-        {
-            console.log(res.data);
-         //save city
-         //initialise authenticate method
-        }
+    $scope.starting();
+    
 
-        },function(err){
-        console.log(err);
-        })
-       // $scope.Authenticated();
 
-    }
+    // $scope.getLocation = function () {
+    //     if (navigator.geolocation) {
+    //         // navigator.geolocation.getCurrentPosition(showPosition, showError);
+    //         var position = {
+    //             coords: {
+    //                 latitude: "18.5204",
+    //                 longitude: "73.8567"
+    //             }
+    //         };
+    //         showPosition(position);
+    //        $scope.Authenticated();
+    //     } else {
+    //         alert("Geolocation is not supported by this browser.");
 
-    function showError(error) {
-        switch (error.code) {
-            case error.PERMISSION_DENIED:
-                alert("User denied the request for Geolocation.");
-                break;
-            case error.POSITION_UNAVAILABLE:
-                alert("Location information is unavailable.");
-                break;
-            case error.TIMEOUT:
-                alert("The request to get user location timed out.");
-                break;
-            case error.UNKNOWN_ERROR:
-                alert("An unknown error occurred.");
-                break;
-        }
-    }
+    //     }
+    // }
 
-    $timeout( function(){
-        $scope.getLocation();
-    }, 2000 );
+    // function showPosition(position) {
+
+    //     //alert("Latitude: " + position.coords.latitude + "Longitude: " + position.coords.longitude);
+    //     LocationService.getLocation(position.coords.latitude,position.coords.longitude).then(function(res){
+    //     if(res=="err")
+    //     {
+    //     alert(err);
+    //     }
+    //     else if(res=="wrongLocation")
+    //     {
+    //     $scope.availableMsg="Service not available in your town currently";
+    //     }
+    //     else
+    //     {
+    //         console.log(res.data);
+    //      //save city
+    //      //initialise authenticate method
+    //     }
+
+    //     },function(err){
+    //     console.log(err);
+    //     })
+    //    // $scope.Authenticated();
+
+    // }
+
+    // function showError(error) {
+    //     switch (error.code) {
+    //         case error.PERMISSION_DENIED:
+    //             alert("User denied the request for Geolocation.");
+    //             break;
+    //         case error.POSITION_UNAVAILABLE:
+    //             alert("Location information is unavailable.");
+    //             break;
+    //         case error.TIMEOUT:
+    //             alert("The request to get user location timed out.");
+    //             break;
+    //         case error.UNKNOWN_ERROR:
+    //             alert("An unknown error occurred.");
+    //             break;
+    //     }
+    // }
+
+    // $timeout( function(){
+    //     $scope.getLocation();
+    // }, 2000 );
    
 
 

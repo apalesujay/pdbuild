@@ -1,7 +1,7 @@
 app.controller('bestCtrl', function ($scope, $window, $rootScope, $location, bestDishService) {
 
     var getAllDistinctList = bestDishService.getAllDistinct();
-    getAllDistinctList.then(success3, err3);
+    getAllDistinctList.then(success3,err3);
 
     function success3(res) {
 
@@ -37,6 +37,16 @@ app.controller('bestCtrl', function ($scope, $window, $rootScope, $location, bes
 
     $scope.best = $scope.Alldata;
 
+    var recommendedDish = bestDishService.getRecommended();
+    recommendedDish.then(success4,error4);
+
+    function success4(res) {
+      $scope.RecDishes = res.data;  
+    }
+
+    function error4(res) {
+        console.log(res);
+    }
 
 
     // $scope.showBestDish=function(obj)

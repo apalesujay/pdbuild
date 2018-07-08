@@ -30,8 +30,14 @@ app.directive("limitTo", [function() {
 }]);
 
 
-app.controller('indexCtrl', function ($scope, $rootScope, $timeout,$location,$window) {
+app.controller('indexCtrl', function ($scope, $rootScope, $timeout,$location,$window,AppConfig) {
+
+
+    //configuration variable
+    $scope.StorageUrl = AppConfig.StorageUrl;
     
+
+
     document.addEventListener("backbutton", onBackKeyDown, false);
     //var for double tap exit
     //var lastTimeBackPress=0;   
@@ -101,7 +107,7 @@ $scope.showLoader=false;
 
 
 //for logout
-$scope.runLogout=function()
+$scope.runLogout = function()
 {
     
     if (typeof (Storage) !== "undefined") {
@@ -186,6 +192,10 @@ app.config(function ($routeProvider) {
         .when("/offers",{
             templateUrl: "app/components/offers/offers.html",
             controller: 'offersCtrl'
+        })
+        .when("/update",{
+            templateUrl: "app/components/update/update.html",
+            controller: 'updateCtrl'
         })
         .otherwise('/');
         

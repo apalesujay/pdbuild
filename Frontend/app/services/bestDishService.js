@@ -53,5 +53,10 @@ app.service('bestDishService', function(AjaxService,AppConfig) {
             return res; 
         }
 
+        this.getRecommended = function(){
+            var res = AjaxService.getWithHeaders(AppConfig.AppUrl+'dish/recommended');
+            return res; 
+        }
+
 
        });

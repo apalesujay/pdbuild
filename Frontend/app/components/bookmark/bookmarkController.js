@@ -47,7 +47,7 @@ app.controller('bookmarkCtrl', function ($scope, $rootScope, $location, $window,
   }
 
   $scope.returnLink = function () {
-    window.history.back();;
+    window.history.back();
   }
 
 

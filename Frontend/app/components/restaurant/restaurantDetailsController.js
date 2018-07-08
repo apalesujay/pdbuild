@@ -5,6 +5,19 @@ app.controller('restaurantDetailsCtrl', function ($scope, $route, $rootScope, $w
     x.then(success, err);
 
     function success(result) {
+
+    var bH=result.data.bussinessHours[0];
+    const bussinessHoursRefined = [];
+    bH.forEach(function(item){
+    var o = String(item.o);
+    var c = String(item.c);
+    if(o.length === 3){o="0"+o;}
+    if(c.length === 3){c="0"+c;}
+    converted = o.substring(0,2)+":"+o.substring(2,4)+"-"+c.substring(0,2)+":"+c.substring(2,4);
+    bussinessHoursRefined.push(converted);
+    
+   });
+      result.data.Time = bussinessHoursRefined;
       $scope.restDetails = result.data;
       $rootScope.restData=$scope.restDetails;
     }

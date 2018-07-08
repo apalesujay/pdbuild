@@ -14,7 +14,7 @@ app.service('userService', function(AjaxService,AppConfig) {
 
         this.createLoginOtp=function(_Mob)
         {//TODO
-            var   res=   AjaxService.post(AppConfig.AppUrl+'createLoginOtp',{Mob:_Mob});
+            var   res=   AjaxService.post(AppConfig.AppUrl+'user/createLoginOtp',{Mob:_Mob});
             return res;
         }
 
@@ -52,7 +52,7 @@ else if(_Mob===undefined||_Mob=="")
     errmsg= "mobile no. is empty";
     return errmsg;  
 }
-else if(_Mob!=undefined&&(/^[0-9]{11}$/.test(_Mob)))
+else if(_Mob != undefined && (/^[0-9]{11}$/.test(_Mob)))
 {
     errmsg= "mobile no. should be 10 digit";
     return errmsg; 
@@ -60,6 +60,11 @@ else if(_Mob!=undefined&&(/^[0-9]{11}$/.test(_Mob)))
 else if(_Password===undefined||_Password=="")
 {
     errmsg= "password is empty";
+    return errmsg;
+}
+else if(_Password.length < 8)
+{
+    errmsg = "password should be of atleast 8 characters";
     return errmsg;
 }
 else

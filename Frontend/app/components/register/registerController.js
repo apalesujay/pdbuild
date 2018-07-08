@@ -181,7 +181,7 @@ $scope.runLogin=function()
 
   function error(res)
   {
-    $scope.$parent.runToast(res.data.message);
+    $scope.$parent.runToast("Wrong Password");
   }
 }
 
