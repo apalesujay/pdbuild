@@ -8,6 +8,11 @@ app.controller('bookmarkCtrl', function ($scope, $rootScope, $location, $window,
 
   function success(res) {
     $scope.$parent.showLoader=false;
+    if (res.data.length > 0) {
+       res.data.map(function (item,index) {
+       item.cuisine = item.cuisine[0]+", "+item.cuisine[1];
+       });
+      }
     $scope.restaurants = res.data;
 
     if ($scope.restaurants.length === 0) {
@@ -28,16 +33,16 @@ app.controller('bookmarkCtrl', function ($scope, $rootScope, $location, $window,
   $scope.addToBookmark = function (id) {
     $scope.hello = id;
     var x = bookmarkService.addToBookmark(id);
-    x.then(success, err);
+    x.then(success2, err2);
 
-    function success(res) {
+    function success2(res) {
 
       $scope.hello = "bookmarked";
 
 
     }
 
-    function err(res) {
+    function err2(res) {
       $scope.$parent.errorManager(res);
     }
   }

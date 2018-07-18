@@ -79,90 +79,111 @@ try {
 }
 }); 
 
+dishRoute.get('/recommended',async (req,res,next) => {
+   return res.status(200).send([
+       {_id:"5b3e5359b704b833bc623c8e",
+        name:"spicy",
+        url:"5b3e5359b704b833bc623c8e/master/96d76c8528f007bfd11f95b2c2226d98_featured_v2.jpg"},
+        {_id:"5b3e5359b704b833bc623c8e",
+        name:"spicy",
+        url:"5b3e5359b704b833bc623c8e/master/96d76c8528f007bfd11f95b2c2226d98_featured_v2.jpg"}
+        ])
+});
 
-dishRoute.get('/eateryid/:eateryid/menu',async (req,res,next) => {
+
+dishRoute.get('/eateryid/:eateryid/menu', async (req, res, next) => {
     try {
         let eateryId = req.params.eateryid;
         U.isValidObjectId(eateryId);
-        
-        let result = await Dish.aggregate([
+
+        let projection =
+            req.query.fields !== undefined && req.method === "GET"
+                ? U.getProjection(req.query)
+                : {};
+
+
+
+        let dbquery = [
             {
-              $lookup:
-                {
-                  from: "eateries",
-                  localField: "EateryId",
-                  foreignField: "_id",
-                  as: "_eateryD"
-                }
-           },
-           {
-               $unwind: "$_eateryD"
-           },
-           {
-               $match:{EateryId:new mongoose.Types.ObjectId(eateryId)}
-           },
-           {
-               $project:{"_id":1,"menuDivision":1,"price":1,"name":1}
-           }
-         ]);
+                $lookup:
+                    {
+                        from: "eateries",
+                        localField: "EateryId",
+                        foreignField: "_id",
+                        as: "_eateryD"
+                    }
+            },
+            {
+                $unwind: "$_eateryD"
+            },
+            {
+                $match: { EateryId: new mongoose.Types.ObjectId(eateryId) }
+            }
+        ];
+
+        if (!_.isEmpty(projection)) {
+            dbquery.push({ $project: projection });
+        }
+
+        let result = await Dish.aggregate(dbquery);
         let proccessedDishesList;
-        if(result !== null || result !== undefined)
-        {
-         proccessedDishesList = _(result)
-         .groupBy("menuDivision")
-         .map(function(items, i) {
-           return {
-             menuDivision: i,
-             details: items
-           };
-         })
-         .value();
+        if (result !== null || result !== undefined) {
+            proccessedDishesList = _(result)
+                .groupBy("menuDivision")
+                .map(function (items, i) {
+                    return {
+                        menuDivision: i,
+                        details: items
+                    };
+                })
+                .value();
         }
         return res.status(200).send(proccessedDishesList);
     } catch (ex) {
         next(ex);
     }
-    }); 
+}); 
 
 
-dishRoute.get('/bestdish/:type/:name',async (req,res,next) => {
-try {
-    let bestdish = req.params.name;
-    let type = req.params.type;
-    
-    let projection =
-      req.query.fields !== undefined && req.method === "GET"
-        ? U.getProjection(req.query)
-        : {};
-    
-    let result = await Dish.aggregate([
-        {
-          $lookup:
+dishRoute.get('/bestdish/:type/:name', async (req, res, next) => {
+    try {
+        let bestdish = req.params.name;
+        let type = req.params.type;
+
+        let projection =
+            req.query.fields !== undefined && req.method === "GET"
+                ? U.getProjection(req.query)
+                : {};
+
+        let dbquery = [
             {
-              from: "eateries",
-              localField: "EateryId",
-              foreignField: "_id",
-              as: "_eateryD"
+                $lookup:
+                    {
+                        from: "eateries",
+                        localField: "EateryId",
+                        foreignField: "_id",
+                        as: "_eateryD"
+                    }
+            },
+            {
+                $unwind: "$_eateryD"
+            },
+            {
+                $match: { DishTag: bestdish }
             }
-       },
-       {
-           $unwind: "$_eateryD"
-       },
-       {
-           $match:{DishTag:bestdish}
-       }
-    //    ,
-    //    {
-    //        $project:projection
-    //    }
-     ]);
-    return res.status(200).send(result);
-} catch (ex) {
-    next(ex);
-}
+        ];
+
+
+        if (!_.isEmpty(projection)) {
+            dbquery.push({ $project: projection })
+        }
+
+        let result = await Dish.aggregate(dbquery);
+        return res.status(200).send(result);
+    } catch (ex) {
+        next(ex);
+    }
 });
-
-
 
 dishRoute.get('/:id',async (req,res,next) => {
     try {

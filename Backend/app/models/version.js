@@ -6,4 +6,4 @@ var Schema = mongoose.Schema;
 module.exports = mongoose.model('Versioning', new Schema({ 
     Ver:{type:Number,required:[true,'Version value required']},
     Force:{type:Boolean,required:[true,'Force value required']} 
-}),'Versioning');
+}),'version');

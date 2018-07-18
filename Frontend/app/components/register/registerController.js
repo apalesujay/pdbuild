@@ -1,6 +1,6 @@
 app.controller('registerCtrl', function ($scope, $location, $rootScope, userService, errorHandlerService) {
 
-
+  $scope.otpprogress=false;
   //check token 
   $scope.Authenticated = function () {
     var token = localStorage.getItem("token");
@@ -32,23 +32,24 @@ app.controller('registerCtrl', function ($scope, $location, $rootScope, userServ
 
   $scope.runLoginOTP=function()
   {
-    
+    $scope.otpprogress=true;
     var x=userService.createLoginOtp($scope.Mob);
     x.then(success,error);
 
     function success(res)
     {
-      $scope.note = res.data;
-      $scope.showMobScreen = false;
+    $scope.showMobScreen = false;
     $scope.showDetails = false;
     $scope.showLogin = false;
     $scope.showOtp = true;
+    $scope.otpprogress=false;
     }
 
     function error(res)
     {
       if (res.status == 400) {
         $scope.$parent.runToast(res.data.message);
+        $scope.otpprogress=false;
       } else {
         $scope.$parent.runToast("SomeThing Went Wrong");
       }
@@ -104,7 +105,6 @@ app.controller('registerCtrl', function ($scope, $location, $rootScope, userServ
 
        
 
-        $scope.note = res.data;
         $scope.showDetails = false;
         $scope.showOtp = true;
         $scope.showError = false;

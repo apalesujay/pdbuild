@@ -38,7 +38,7 @@
             <div class="row">
 
                 <div ng-repeat="recDish in RecDishes">
-              <div class="topBox col s6" ng-click="redirect('/showSingleDish/{{recDish._id}}')">
+              <div class="topBox col s6" ng-click="redirectToEatery(recDish._id)">
                 <div class="innerBox">
                 <img src="{{StorageUrl}}/eatery-s/{{recDish.url}}" class="imageBox" alt="">
                 <div class="overlayBox"></div>

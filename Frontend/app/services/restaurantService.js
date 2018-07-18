@@ -15,11 +15,16 @@ app.service('restaurantService', function (AjaxService, AppConfig) {
 
     this.getRestaurant=function(id)
     {
-        var token=localStorage.getItem("token");
+        
         var res=AjaxService.get(AppConfig.AppUrl+'eatery/'+id);
         return res;
     }
 
+    this.getRestaurantwithdeal=function(id)
+    {
+        var res=AjaxService.get(AppConfig.AppUrl+'eatery/dealonly'+id);
+        return res;
+    }
 
     this.getDishesinRestaurant=function(id)
     {

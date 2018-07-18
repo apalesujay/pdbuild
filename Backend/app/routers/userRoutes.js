@@ -153,7 +153,7 @@ UserRoute.get('/pwdauthentication/mob/:mob/pwd/:pwd', preRequestByMob, async (re
                     }
                 }
                 else {
-                    res.status(400).send('Authentication failed. Wrong password.');
+                    res.status(400).send('Authentication failed. Wrong password');
                 }
             }
 
@@ -167,23 +167,44 @@ UserRoute.get('/pwdauthentication/mob/:mob/pwd/:pwd', preRequestByMob, async (re
     }
 });
 
-UserRoute.get('/details',Auth(['USER']),async (req,res,next) => {
-        //TODO validations
-        try {
-            
-        
-    let accDetails = await  Account.findOne({_id:req.decoded.id},{"User":1});
-    if(accDetails)
-    {
-        return res.status(200).send(accDetails);
+
+UserRoute.post('/createLoginOtp',async (req,res,next) => {
+    let otpPin = smsService.createOTP();
+    
+    let account = await Account.findOne({"User.Mob":req.body.Mob});
+
+    if (account !== null && account.User.IsAuthenticatedMob === true) {
+
+    let result = await Account.update({"User.Mob": req.body.Mob},{$set:{"User.TempMobLink":otpPin}});
+     
+    if (result.nModified === 1) {
+       smsService.sendSMS('91' + req.body.Mob,otpPin);
+       return res.status(200).send("request completed successfully");
+       } else {
+        return res.status(500).send("Something went wrong");
+      }
     }
     else
     {
-        return res.status(400).send('no user found');
+        return res.status(400).send("User does not exists");
     }
-} catch (ex) {
-    next(ex);
-}
+    });
+
+
+
+UserRoute.get('/details', Auth(['USER']), async (req, res, next) => {
+    //TODO validations
+    try {
+        let accDetails = await Account.findOne({ _id: req.decoded.id }, { "User": 1 });
+        if (accDetails) {
+            return res.status(200).send(accDetails);
+        }
+        else {
+            return res.status(400).send('no user found');
+        }
+    } catch (ex) {
+        next(ex);
+    }
 
 });
 
@@ -215,4 +236,3 @@ UserRoute.get('/exist/mob/:mob',async (req,res,next) => {
 });
 
 module.exports = UserRoute;
-

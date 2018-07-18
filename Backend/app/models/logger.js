@@ -4,11 +4,12 @@ var Schema = mongoose.Schema;
 
 // set up a mongoose model and pass it using module.exports
 module.exports = mongoose.model('Logger', new Schema({ 
-    Created: {type:Date,default:Date.now},
-    StatusCode:{type:Number},
-    UserId:{type:String},
-    Params: {type:String},
-    Location:{type:String},
-    Msg:{type:String},
-    Error:{type:String}  
+    name:{type:String},
+    status:{type:String,default:null},
+    url:{type:String},
+    parameters: {type:Object,default:null},
+    userId:{type:String},
+    errorStack:{type:Schema.Types.Mixed,default:null},
+    error:{type:Object,default:null},
+    created: {type:Date,default:Date.now}, 
 }));

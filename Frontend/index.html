@@ -124,13 +124,12 @@
         </li>
         
         <li><a href="#!main" class="waves-effect"><i class="ion-android-home"></i> Home</a></li>
-        <li><a href="#!bookmarks" class="waves-effect"><i class="ion-android-bookmark"></i> BookMark</a></li>
-        <li><a href="#!betteronebyuser" class="waves-effect"><i class="ion-ios-compose"></i>Suggest Better One</a></li>
-        <li><a href="#!best" class="waves-effect"><i class="ion-android-favorite"></i> Best Dishes</a></li> 
+        <li><a href="#!best" class="waves-effect"><i class="ion-android-favorite"></i> Best Dishes</a></li>
+        <li><a href="#!bookmarks" class="waves-effect"><i class="ion-android-bookmark"></i> BookMark</a></li>   
         <li><a href="#!register" class="waves-effect" ng-click="runLogout()"><i class="ion-paper-airplane"></i> LogOut</a></li>
       </ul>
 
-      <div ng-hide="showError1" class="error-screen fadein fadeout">{{errorContent1}}</div>
+      <div ng-hide="showError1" class="error-screen fadein fadeout" ng-bind="errorContent1"></div>
   
       <!-- End of Sidebars -->
      </div><!--end of angular app -->
@@ -162,8 +161,10 @@
     <script src="app/components/main/mainController.js"></script>
     <script src="app/components/startapp/startController.js"></script>
     <script src="app/components/register/registerController.js"></script>
+    <script src="app/components/contactus/contactusController.js"></script>
     <script src="app/components/restaurant/restaurantDetailsController.js"></script>
     <script src="app/components/restaurant/restaurantController.js"></script>
+    <script src="app/components/restaurant/dctrestaurantController.js"></script>
     <script src="app/components/bookmark/bookmarkController.js"></script>
     <script src="app/components/bestDish/addBestDishController.js"></script>
     <script src="app/components/bestDish/bestController.js"></script>
@@ -190,6 +191,8 @@
     <script src="js/vendor/jquery.easy-autocomplete.min.js"></script>
     <script src="js/rating.js"></script>
     <script src="js/main.js"></script>
+
+    
 
     <!--for rating-->
     

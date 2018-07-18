@@ -3,7 +3,7 @@
 document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady() {
-    StatusBar.backgroundColorByHexString("#d43c3c");
+    StatusBar.backgroundColorByHexString("#ff8000");
 }
 
 
@@ -20,7 +20,7 @@ angular.element(function() {
 app.directive("limitTo", [function() {
     return {
         restrict: "A",
-        link: function(scope, elem, attrs,mCtrl) {
+        link: function(scope, elem, attrs, mCtrl) {
             var limit = parseInt(attrs.limitTo);
             angular.element(elem).on("keyup", function(e) {
                 if (this.value.length == limit) e.preventDefault();
@@ -30,7 +30,7 @@ app.directive("limitTo", [function() {
 }]);
 
 
-app.controller('indexCtrl', function ($scope, $rootScope, $timeout,$location,$window,AppConfig) {
+app.controller('indexCtrl', function ($scope,$rootScope,$timeout,$location,$window,AppConfig) {
 
 
     //configuration variable
@@ -196,6 +196,14 @@ app.config(function ($routeProvider) {
         .when("/update",{
             templateUrl: "app/components/update/update.html",
             controller: 'updateCtrl'
+        })
+        .when("/dctrestaurant",{
+            templateUrl: "app/components/restaurant/dctrestaurant.html",
+            controller: 'dctrestaurantCtrl'
+        })
+        .when("/contactus",{
+            templateUrl: "app/components/contactus/contactus.html",
+            controller: 'contactusCtrl'
         })
         .otherwise('/');
         

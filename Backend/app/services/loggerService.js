@@ -1,27 +1,18 @@
 'use strict'
-var Account = require('../models/account');
 var Logger = require('../models/logger');
 //custom error handler
-exports.logger = function (statusCode,err, userid, params, location, msg) {
+exports.logger = async function (error) {
 
-    var _logger = new Logger({
-        StatusCode:statusCode,
-        UserId: userid,
-        Params: JSON.stringify(params),
-        Location: location,
-        Msg: msg,
-        Error: err
-    });
-console.log(_logger);
-    
-
-    _logger.save(function (er, result) {
-        if (er) {
-         return  console.log(er);
-        }
-        if (result) {
-          return  console.log('error saved to DB');   
-        }
+    let _logger = new Logger({
+        name:        error._name,
+        status:      error._status,
+        url:         error._url,
+        parameters:  JSON.stringify(error._parameters),
+        userId:      error._userId,
+        errorStack:  error._errorStack,
+        error :      JSON.stringify(error.err)
     });
 
-}
+     let logged =  await _logger.save(); 
+       
+    };

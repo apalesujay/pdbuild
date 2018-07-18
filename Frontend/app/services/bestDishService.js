@@ -42,7 +42,7 @@ app.service('bestDishService', function(AjaxService,AppConfig) {
 
         this.getBestDish=function(_type,_name)
         {
-            var res= AjaxService.getWithHeaders(AppConfig.AppUrl+'dish/bestdish/'+_type+"/"+_name,AppConfig.Token);
+            var res= AjaxService.getWithHeaders(AppConfig.AppUrl+'dish/bestdish/'+_type+"/"+_name+'?fields=_id,price,name,label,EateryId,imgMain,_eateryD.name,_eateryD.locality,_eateryD.city,_eatery.latitude,_eatery.longitude',AppConfig.Token);
             return res;
         }
 

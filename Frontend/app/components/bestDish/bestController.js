@@ -20,7 +20,7 @@ app.controller('bestCtrl', function ($scope, $window, $rootScope, $location, bes
                 onClickEvent: function () {
                     var selectedItemValue = $("#simple").getSelectedItemData();
                     console.log(selectedItemValue);
-                    $scope.redirectToDish(selectedItemValue.name, selectedItemValue.type);
+                    $scope.redirectToDish(selectedItemValue.name,selectedItemValue.type);
                 }
             }
 
@@ -68,6 +68,11 @@ app.controller('bestCtrl', function ($scope, $window, $rootScope, $location, bes
         }
     }
 
+
+    $scope.redirectToEatery = function(id)
+    {
+       $location.path('/restaurantDetails/'+id);
+    }
     // $scope.runSearch=function()
     // {
     //     var searchString = $("#simple").val();

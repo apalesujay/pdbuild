@@ -1,6 +1,8 @@
 app.controller('mainCtrl', function ($scope, $rootScope, $location, $window, MainService, bookmarkService, errorHandlerService) {
 
 
+  
+
   $scope.init = function () {
     // Left Sidebar
     $('#open-left').sideNav({ // Trigger id
@@ -57,6 +59,8 @@ app.controller('mainCtrl', function ($scope, $rootScope, $location, $window, Mai
            $window.location.href = "#!/restaurantDetails/" + encodeURIComponent(id);
      }
 
+  if($rootScope.resdata == undefined)
+  {   
   $scope.$parent.showLoader = true;
   var x = MainService.getResInfo();
   x.then(success, err);
@@ -65,10 +69,12 @@ app.controller('mainCtrl', function ($scope, $rootScope, $location, $window, Mai
     $scope.$parent.showLoader = false;
     if (res.data.length > 0) {
       res.data.map(function (item,index) {
-        item.cuisine = item.cuisine[0]+", "+item.cuisine[1];
+        item.cuisine = item.cuisine[0] +", "+ item.cuisine[1];
       });
       $scope.restaurants = res.data;
+      $rootScope.resdata = $scope.restaurants;
     }
+   
 
   }
 
@@ -76,6 +82,13 @@ app.controller('mainCtrl', function ($scope, $rootScope, $location, $window, Mai
     $scope.$parent.showLoader = false;
     $scope.$parent.errorManager(res);
   }
+}
+else
+{
+  $scope.restaurants=$rootScope.resdata;
+}
+
+
 
 
   $scope.showRestaurant = function (rest) {
@@ -92,7 +105,7 @@ app.controller('mainCtrl', function ($scope, $rootScope, $location, $window, Mai
   }
 
   $scope.runright = function () {
-    $location.path('/offers');
+    $location.path('/dctrestaurant');
   }
 
 

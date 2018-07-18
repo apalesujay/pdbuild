@@ -19,7 +19,7 @@
     <div class="news" style="position:relative">
             <div ng-repeat="DishDetail in bestDishDetails">
         <div class="media-top-object animated fadeinright z-depth-1 delay-2" style="padding:2px 2px;position: relative;" ng-click="restaurantDetails(DishDetail.EateryId)">
-          <div ng-if="DishDetail.imgMain == null" style="float:left"><img style="width:150px;height:100px" ng-src="../../../img/custom/placeholder-image.jpg" alt=""></div>
+          <div ng-if="DishDetail.imgMain == null" style="float:left"><img style="width:150px;height:100px" ng-src="img/custom/placeholder-image.jpg" alt=""></div>
           <div ng-if="DishDetail.imgMain != null" style="float:left"><img style="width:150px;height:100px" ng-src="{{StorageUrl}}/eatery-s/{{DishDetail.imgMain}}" alt=""></div>
           <div style="padding:5px 15px;">
             <h4 class="news-title">
@@ -36,7 +36,7 @@
           </div>
           <div class="" style ="position: absolute;right:5px;bottom:5px;" ng-click="openMaps(DishDetail._eateryD.latitude,DishDetail._eateryD.longitude);$event.stopPropagation();">
             <!-- <i style="font-size:3rem;" class="ion-location"></i> -->
-            <img style="width:24px;height:24px;" src="../../../img/custom/Location.png">
+            <img style="width:24px;height:24px;" src="img/custom/Location.png">
           </div>
         </div>  
         </div>

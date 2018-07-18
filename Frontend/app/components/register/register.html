@@ -80,7 +80,6 @@
 
   <div id="otp_section" ng-show="showOtp">
     <div class="login-form z-depth-1">
-      {{note}}
       <h1>Enter OTP</h1>
       <div class="input-field">
         <i class="ion-android-lock prefix"></i>
@@ -114,7 +113,7 @@
 
       <div class="waves-effect waves-light btn-large accent-color block m-b-20 animated bouncein delay-2" ng-click="runLogin()">Login</div>
       <span>Login with ..
-        <a class="primary-text" ng-click="runLoginOTP();$event.stopPropagation();">OTP</a>
+        <div class="primary-text" ng-disabled="otpprogress" ng-click="runLoginOTP();$event.stopPropagation();">OTP</div>
       </span>
 
     </div>

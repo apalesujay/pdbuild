@@ -10,27 +10,16 @@ app.service('bookmarkService', function(AjaxService,AppConfig) {
 
         this.getBookmarks=function()
         {
-            
-            var res= AjaxService.getWithHeaders(AppConfig.AppUrl+'myfav/eatery',AppConfig.Token);
+            var res= AjaxService.getWithHeaders(AppConfig.AppUrl+'myfav/eatery?fields=_id,name,locality,city,cuisine,dealAmount,imgMaster',AppConfig.Token);
             return res;
         };
        
 
        this.IsBookmarked=function(id)
        {
-        var res=false; 
-        
-        if(AppConfig.Token == undefined)
-        {
-            res.data=false;
-             return res;
-        }
-        else
-        {
         res= AjaxService.getWithHeaders(AppConfig.AppUrl+'myfav/eatery/'+ id +'/exist',AppConfig.Token);
         return res;
-        }
-    };
+       };
 
 
 

@@ -41,9 +41,22 @@ eateryRoute.get('/near', async (req, res, next) => {
 
 eateryRoute.get('/', async (req, res, next) => {
     try {
-        let qp = U.getQueryParameterInJson(req.query, 20);
-        console.log(Object.keys(Eatery.schema.paths));
+        let qp = U.getQueryParameterInJson(req.query,0);
         let eatery = await Eatery.find(qp.filter)
+            .select(qp.projection)
+            .skip(qp.skip)
+            .limit(qp.limit);
+
+        res.status(200).send(eatery);
+    } catch (ex) {
+        next(ex);
+    }
+});
+
+eateryRoute.get('/dealonly', async (req, res, next) => {
+    try {
+        let qp = U.getQueryParameterInJson(req.query,0);
+        let eatery = await Eatery.find({$where:"this.dealConditions.length > 1"})
             .select(qp.projection)
             .skip(qp.skip)
             .limit(qp.limit);

@@ -10,6 +10,7 @@ const reviewRoute  = require('../routers/reviewRoute');
 const referenceRoute = require('../routers/reference/all');
 const manageRoute    = require('../routers/managerRoute');
 const extraRoute   = require('../routers/extraRoute');
+const toprecommended=require('../routers/toprecommended');
 
 const testUploadRoute = require('../routers/testuploadRoute');
 
@@ -21,7 +22,8 @@ router.use('/myfav',myfavRoutes);
 router.use('/testupload',testUploadRoute);
 router.use('/review',reviewRoute);
 router.use('/reference',referenceRoute);
-router.use('/manage',manageRoute)
+router.use('/manage',manageRoute);
+router.use('/toprecommended',toprecommended);
 
 
 

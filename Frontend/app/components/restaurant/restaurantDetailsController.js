@@ -40,22 +40,22 @@ app.controller('restaurantDetailsCtrl', function ($scope, $route, $rootScope, $w
   $scope.init();
 
   $scope.returnLink = function () {
-    $location.path('/main');
+    $window.history.back();
   }
 
 
 
   $scope.IsBookmarkedbyUser = function () {
     var x = bookmarkService.IsBookmarked($route.current.params.id);
-    x.then(success, err);
+    x.then(success2, err2);
 
-    function success(result) {
+    function success2(result) {
       if (result.data === true) {
         document.getElementById("bookmark").style.color = "rgb(253, 216, 53)";
       }
     }
 
-    function err(result) {
+    function err2(result) {
       console.log(result);
     }
   }
@@ -77,15 +77,15 @@ app.controller('restaurantDetailsCtrl', function ($scope, $route, $rootScope, $w
 
 
     var x = bookmarkService.addToBookmark($route.current.params.id);
-    x.then(success, err);
+    x.then(success3, err3);
 
-    function success(res) {
+    function success3(res) {
 
       console.log("bookmarked");
 
     }
 
-    function err(res) {
+    function err3(res) {
       $scope.$parent.errorManager(res);
     }
   }
@@ -104,13 +104,12 @@ app.controller('restaurantDetailsCtrl', function ($scope, $route, $rootScope, $w
   }
 
 
-
   $scope.openDial = function (number) {
     $window.location.href = 'tel:+91' + number;
   }
 
   $scope.openMaps = function (latitude, longitute) {
-    $window.location.href = 'http://maps.google.com/maps?q=' + latitude + ',' + longitute;
+    $window.location.href = 'https://www.google.co.in/maps/dir//' + latitude + ',' + longitute;
   }
 
 });
