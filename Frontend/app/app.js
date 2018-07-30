@@ -205,6 +205,10 @@ app.config(function ($routeProvider) {
             templateUrl: "app/components/contactus/contactus.html",
             controller: 'contactusCtrl'
         })
+        .when("/street",{
+            templateUrl: "app/components/main/street.html",
+            controller: 'streetCtrl'
+        })
         .otherwise('/');
         
 

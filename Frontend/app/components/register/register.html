@@ -23,11 +23,12 @@
       <div class="input-field" ng-form name="myForm">
         <i class="ion-iphone prefix"></i>
         
-        <input id="login-mob" type="number" ng-model="Mob" name="mobilenum" ng-keypress="getKeyPress($event,Mob)" ng-pattern="/^[789]{1}[0-9]{9}$/" required>
+        <input id="login-mob" type="number" ng-model="Mob" name="mobilenum" ng-keypress="getKeyPress($event,Mob)" ng-pattern="/^[56789]{1}[0-9]{9}$/" required>
       
         <label for="login-mob">Mobile</label>
       </div>
       <input type="submit" ng-disabled="myForm.mobilenum.$error.pattern || myForm.mobilenum.$error.required" ng-class="{'accent-color' : !(myForm.mobilenum.$error.pattern || myForm.mobilenum.$error.required)}" class="waves-effect waves-light btn-large bg-invalid block m-b-20 animated bouncein delay-2" style="width:100%" ng-click="runCheckUserExists()"/>
+      <h6 style="margin-top:15px;text-align:center;color:#9e9e9e;font-size: small">The latest Version of the App will be available in October till then Please bear with Us. Thanks!</h6>
     </div>
   </div>
 

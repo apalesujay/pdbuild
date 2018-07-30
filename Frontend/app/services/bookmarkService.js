@@ -10,7 +10,7 @@ app.service('bookmarkService', function(AjaxService,AppConfig) {
 
         this.getBookmarks=function()
         {
-            var res= AjaxService.getWithHeaders(AppConfig.AppUrl+'myfav/eatery?fields=_id,name,locality,city,cuisine,dealAmount,imgMaster',AppConfig.Token);
+            var res= AjaxService.getWithHeaders(AppConfig.AppUrl+'myfav/eatery?fields=_id,name,locality,city,cuisine,dealAmount,dealConditions,imgMaster',AppConfig.Token);
             return res;
         };
        

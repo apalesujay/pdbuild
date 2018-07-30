@@ -29,7 +29,7 @@
 
     
     <div class="news" style="padding-top:60px">
-            <div ng-repeat="rest in restaurants">
+            <div ng-repeat="rest in restaurants track by $index">
         <div class="media-top-object animated fadeinright z-depth-1 delay-2" style="padding:5px 5px;" ng-click="showRestaurant(rest)">
           <div  class="media-left" style="width:auto;"><img style="width:150px;height:100px;" ng-src="{{StorageUrl}}/eatery-s/{{rest.imgMaster[0]}}"  alt=""></div>
           <div class="media-body" style="padding-bottom: 8px;padding-top: 8px;">

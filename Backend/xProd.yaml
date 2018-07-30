@@ -1,5 +1,7 @@
 env: flex
 runtime: nodejs
+manual_scaling: 
+  instances: 1
 env_variables: 
   ND_VER: "1"
   ND_ENV: "PROD"

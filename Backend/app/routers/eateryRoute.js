@@ -56,7 +56,7 @@ eateryRoute.get('/', async (req, res, next) => {
 eateryRoute.get('/dealonly', async (req, res, next) => {
     try {
         let qp = U.getQueryParameterInJson(req.query,0);
-        let eatery = await Eatery.find({$where:"this.dealConditions.length > 1"})
+        let eatery = await Eatery.find({$where:"this.dealConditions.length > 0"})
             .select(qp.projection)
             .skip(qp.skip)
             .limit(qp.limit);

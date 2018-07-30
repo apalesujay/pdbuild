@@ -27,7 +27,7 @@ app.controller('dishReviewCtrl', function ($scope,$route, $rootScope, $timeout,$
 
     $scope.returnLink=function()
     {
-        window.history.back();;
+        window.history.back();
     }
 
     $scope.setRating = function () {

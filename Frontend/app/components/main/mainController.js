@@ -1,4 +1,4 @@
-app.controller('mainCtrl', function ($scope, $rootScope, $location, $window, MainService, bookmarkService, errorHandlerService) {
+app.controller('mainCtrl', function ($scope, $document,$timeout,$rootScope, $location, $window, MainService, bookmarkService, errorHandlerService) {
 
 
   
@@ -63,7 +63,7 @@ app.controller('mainCtrl', function ($scope, $rootScope, $location, $window, Mai
   {   
   $scope.$parent.showLoader = true;
   var x = MainService.getResInfo();
-  x.then(success, err);
+  x.then(success,err);
 
   function success(res) {
     $scope.$parent.showLoader = false;
@@ -73,6 +73,7 @@ app.controller('mainCtrl', function ($scope, $rootScope, $location, $window, Mai
       });
       $scope.restaurants = res.data;
       $rootScope.resdata = $scope.restaurants;
+      $scope.restaurants = $scope.restaurants.concat($rootScope.resdata);
     }
    
 
@@ -90,10 +91,9 @@ else
 
 
 
-
-  $scope.showRestaurant = function (rest) {
-    $location.path("/restaurantDetails/" + rest._id);
-  }
+$scope.showRestaurant = function (rest) {
+  $location.path("/restaurantDetails/" + rest._id);
+}
 
 
   $scope.runsidebar = function () {
@@ -107,7 +107,5 @@ else
   $scope.runright = function () {
     $location.path('/dctrestaurant');
   }
-
-
 
 });

@@ -51,7 +51,7 @@ app.controller('restaurantDetailsCtrl', function ($scope, $route, $rootScope, $w
 
     function success2(result) {
       if (result.data === true) {
-        document.getElementById("bookmark").style.color = "rgb(253, 216, 53)";
+        document.getElementById("bookmark").style.color = "rgb(231, 76, 60)";
       }
     }
 
@@ -69,10 +69,10 @@ app.controller('restaurantDetailsCtrl', function ($scope, $route, $rootScope, $w
 
   $scope.addToBookmark = function () {
 
-    if (document.getElementById("bookmark").style.color == "rgb(231, 76, 60)") {
-      document.getElementById("bookmark").style.color = "rgb(253, 216, 53)";
-    } else {
+    if (document.getElementById("bookmark").style.color == "rgb(160, 160, 160)") {
       document.getElementById("bookmark").style.color = "rgb(231, 76, 60)";
+    } else {
+      document.getElementById("bookmark").style.color = "rgb(160, 160, 160)";
     }
 
 

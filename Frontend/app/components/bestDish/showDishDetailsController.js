@@ -26,7 +26,7 @@ app.controller('showDishDetailsCtrl', function ($scope, $window, $route, $rootSc
   }
 
   $scope.openMaps = function (latitude, longitute) {
-    $window.location.href = 'http://maps.google.com/maps?q=' + latitude + ',' + longitute;
+    $window.location.href = 'https://www.google.co.in/maps/dir//' + latitude + ',' + longitute;
   }
 
 
